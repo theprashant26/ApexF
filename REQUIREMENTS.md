@@ -339,7 +339,7 @@ Validation, error display, the loading state and the success panel already work.
 | Touch targets ≥ 44px | ✅ |
 | `prefers-reduced-motion` fully honoured | ✅ |
 | Works with JavaScript disabled for reading (chrome is JS-mounted; the A–Z index and all page copy are static) | ⚠️ partial — see note |
-| No horizontal overflow at 320 / 375 / 390 / 768 / 1024 / 1280 / 1920 | ✅ measured, see below |
+| No horizontal overflow, all 10 pages × 14 viewports | ✅ measured, see below |
 | Contrast — `--ax-text` on `--ax-void` | ✅ ≈ 17:1 |
 | Contrast — `--ax-muted` on `--ax-void` | ✅ ≈ 8.4:1 |
 | Contrast — `--ax-gold-2` on `--ax-void` | ✅ ≈ 9.6:1 |
@@ -353,6 +353,43 @@ programmes. With scripting off, page content, the static A–Z programme index a
 `sitemap.xml` keep every URL reachable, but the nav chrome and the `?code=` detail pages do
 not render. If a fully no-JS experience becomes a requirement, the fix is to pre-render the
 chrome into each page at build time.
+
+### Responsive QA — 10 pages × 14 viewports
+
+Every page was measured at every breakpoint (140 combinations), not sampled:
+
+| Class | Widths tested |
+|---|---|
+| Phones | 320, 360, 375, 390, 414, 430 |
+| Phone landscape | 844 × 390 |
+| Tablets | 768, 834, 1024, 1180 |
+| Laptop / desktop | 1280, 1440, 1920 |
+
+Each combination was checked for: horizontal document overflow, any element
+extending past the viewport, any element clipping its own content, touch-target
+size, and text below 12px.
+
+**Result: 0 horizontal overflow, 0 clipped content, 0 undersized touch targets,
+0 text under 12px.** Six defects were found and fixed in this pass:
+
+1. Long button labels (`Explore the programmes`) were clipped by `white-space:nowrap`
+   inside a 280px column at 320px — buttons now wrap below 1024px.
+2. The search field's fixed `min-width:240px` overflowed its panel at 320px — now
+   `min(240px,100%)`.
+3. The card/register view-toggle buttons were 37px tall — now 44px on touch widths.
+4. Filter pills dropped to 40px under the 560px breakpoint — now 44px.
+5. Role chips were 43px — now 44px.
+6. Twelve micro-labels sat between 9.9px and 11.8px (the header's
+   "PROFESSIONAL ACADEMY" line was the worst at 9.9px). All raised to a 12px floor;
+   footer and drawer links given a 24px minimum target.
+
+One finding is deliberately left: the `contact page` link inside a sentence on
+`disclaimer.html` is 20px tall. WCAG 2.5.8 explicitly exempts targets embedded in a
+block of text, and enlarging it would break the line it sits in.
+
+**Still not covered by this pass:** real iOS Safari and Android Chrome (all of the
+above is Chromium), and visual sign-off at every breakpoint — layout was verified
+programmatically plus spot-checked by screenshot at 320, 390, 768 and 1440.
 
 ### What was actually tested, and how
 
