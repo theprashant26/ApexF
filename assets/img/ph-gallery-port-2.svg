@@ -1,0 +1,34 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1067" height="1600" viewBox="0 0 1067 1600" role="img" aria-label="Gallery portrait 2 placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0E1A33"/>
+      <stop offset="0.55" stop-color="#0A1122"/>
+      <stop offset="1" stop-color="#05090F"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#8C6C2A"/>
+      <stop offset="0.5" stop-color="#E6C97E"/>
+      <stop offset="1" stop-color="#C9A24B"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="0.5" cy="0.32" r="0.72">
+      <stop offset="0" stop-color="#C9A24B" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#C9A24B" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="89" height="89" patternUnits="userSpaceOnUse">
+      <path d="M 89 0 L 0 0 0 89" fill="none" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1067" height="1600" fill="url(#bg)"/>
+  <rect width="1067" height="1600" fill="url(#grid)"/>
+  <rect width="1067" height="1600" fill="url(#bloom)"/>
+  <path d="M 0 1600 L 1067 0" stroke="url(#gold)" stroke-width="2" fill="none" opacity="0.45"/>
+  <rect x="37" y="37" width="993" height="1526" fill="none" stroke="#C9A24B" stroke-opacity="0.34" stroke-width="1.5"/>
+
+  <circle cx="534" cy="672" r="80" fill="none" stroke="#C9A24B" stroke-opacity="0.5" stroke-width="2"/>
+  <path d="M 500 672 l 67 0 M 534 638 l 0 67" stroke="#E6C97E" stroke-opacity="0.75" stroke-width="2" stroke-linecap="round"/>
+
+  <text x="534" y="832" text-anchor="middle" fill="#EDF1F9" font-family="Segoe UI, Inter, system-ui, sans-serif" font-size="55" font-weight="600" letter-spacing="0.5">Gallery portrait 2</text>
+  <text x="534" y="912" text-anchor="middle" fill="#C9A24B" font-family="Segoe UI, Inter, system-ui, sans-serif" font-size="43" font-weight="500" letter-spacing="2">1067 x 1600</text>
+  <text x="534" y="987" text-anchor="middle" fill="#6B7A99" font-family="Segoe UI, Inter, system-ui, sans-serif" font-size="32" letter-spacing="3">APEX IMAGE SLOT</text>
+</svg>

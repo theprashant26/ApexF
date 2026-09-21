@@ -1,35 +1,83 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Page not found | Apex Professional Academy</title>
-  <meta name="description" content="The requested Apex Professional Academy page could not be found.">
-  <link rel="canonical" href="404.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/nav.css">
-  <link rel="stylesheet" href="assets/css/main.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | Apex Professional Academy</title>
+<meta name="description" content="That page could not be found. Browse the 21 Apex programmes or the career-oriented role finder instead.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#04070E">
+
+<link rel="icon" href="assets/brand/apexlogo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/apex.css">
+<script>document.documentElement.classList.add("ax-ready");</script>
 </head>
-<body>
-  <div data-ax-header-mount></div>
-  <main id="main-content">
-    <section class="ax-section ax-surface-dark ax-not-found">
-      <div class="ax-container">
-        <p class="ax-styleguide__label ax-styleguide__label--dark">404</p>
-        <h1>This page is not in the register.</h1>
-        <p>Return to the Apex home page or browse the programme catalogue.</p>
-        <div class="ax-cluster"><a class="ax-button ax-button--gold" href="index.html">Go home</a><a class="ax-button ax-button--outline-dark" href="programmes.html">Browse programmes</a></div>
+
+<body data-page="404">
+<a class="ax-skip" href="#main">Skip to content</a>
+
+<div class="ax-atmos" aria-hidden="true">
+  <span class="ax-atmos__orb ax-atmos__orb--1"></span>
+  <span class="ax-atmos__orb ax-atmos__orb--2"></span>
+</div>
+
+<div data-ax-header></div>
+
+<main id="main">
+  <section class="ax-phero">
+    <div class="ax-container ax-container--narrow ax-center">
+      <p class="ax-404" aria-hidden="true">404</p>
+      <h1 class="ax-h2 ax-mt-3">This page took a different route.</h1>
+      <p class="ax-lead ax-mt-3">
+        The link may be out of date, or the address may be incomplete. Everything below is
+        one click away.
+      </p>
+      <div class="ax-cluster ax-mt-4">
+        <a class="ax-btn ax-btn--gold ax-btn--lg" href="index.html">Back to home</a>
+        <a class="ax-btn ax-btn--glass ax-btn--lg" href="programmes.html">All 21 programmes</a>
       </div>
-    </section>
-  </main>
-  <div data-ax-footer-mount></div>
-  <script src="assets/js/nav.js"></script>
+    </div>
+  </section>
+
+  <section class="ax-section ax-section--tight">
+    <div class="ax-container">
+      <div class="ax-grid ax-grid--3 ax-gap-md">
+        <a class="ax-panel ax-panel--pad ax-spot ax-pcard" href="programmes.html">
+          <h2 class="ax-h3">Programme register</h2>
+          <p class="ax-body ax-body--sm ax-mt-2">
+            All 21 divisions, searchable by training area and by career-oriented role.
+          </p>
+          <span class="ax-link ax-mt-3">Open the register</span>
+        </a>
+        <a class="ax-panel ax-panel--pad ax-spot ax-pcard" href="careers.html">
+          <h2 class="ax-h3">Role finder</h2>
+          <p class="ax-body ax-body--sm ax-mt-2">
+            Start from the job title and work back to the programmes that train for it.
+          </p>
+          <span class="ax-link ax-mt-3">Browse roles</span>
+        </a>
+        <a class="ax-panel ax-panel--pad ax-spot ax-pcard" href="contact.html">
+          <h2 class="ax-h3">Contact</h2>
+          <p class="ax-body ax-body--sm ax-mt-2">
+            Phone, email and the campus address, plus a direct message form.
+          </p>
+          <span class="ax-link ax-mt-3">Get in touch</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div data-ax-footer></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="assets/data/programmes.js" defer></script>
+<script src="assets/js/pages.js" defer></script>
+<script src="assets/js/apex.js" defer></script>
 </body>
 </html>

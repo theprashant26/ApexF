@@ -1,34 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace {{PLACEHOLDER: production site origin}} with the deployed HTTPS origin before launch. -->
+<!-- Replace https://example.com/ with the live domain before deploying. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>{{PLACEHOLDER: production site origin}}/index.html</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/about.html</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programmes.html</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/careers.html</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/admissions.html</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/gallery.html</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/contact.html</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/disclaimer.html</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/404.html</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=MIRTC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=RIATC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=AATC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=HITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=TTMC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=MITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=PITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=EITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=SITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=TITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=BITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=FITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=PSDC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=LITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=HIMTC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=MIMC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=DITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=RIMC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=ITITC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=CETC</loc></url>
-  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=EETC</loc></url>
+  <url>
+    <loc>https://example.com/index.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programmes.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://example.com/careers.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://example.com/about.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://example.com/admissions.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/gallery.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://example.com/contact.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://example.com/disclaimer.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=MIRTC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=RIATC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=AATC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=HITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=TTMC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=MITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=PITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=EITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=SITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=TITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=BITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=FITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=PSDC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=LITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=HIMTC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=MIMC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=DITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=RIMC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=ITITC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=CETC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/programme.html?code=EETC</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -1,98 +1,155 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Programmes | Apex Professional Academy</title>
-  <meta name="description" content="Browse Apex Professional Academy's 21 sector-focused professional training programmes by group, training area, and career-oriented role.">
-  <link rel="canonical" href="programmes.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/nav.css">
-  <link rel="stylesheet" href="assets/css/main.css">
-</head>
-<body>
-  <div data-ax-header-mount></div>
-  <main id="main-content" data-programmes-page>
-    <section class="ax-page-banner ax-surface-dark">
-      <div class="ax-container">
-        <p class="ax-styleguide__label ax-styleguide__label--dark">The catalogue</p>
-        <h1>Find the programme that fits your direction.</h1>
-        <p>Search across programme divisions, training areas, and career-oriented roles. Every result points back to the source programme.</p>
-      </div>
-    </section>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All 21 programmes | Apex Professional Academy</title>
+<meta name="description" content="Search and filter all 21 Apex Professional Academy training programmes by division, certificate code, training area or career-oriented role.">
+<link rel="canonical" href="programmes.html">
+<meta name="theme-color" content="#04070E">
 
-    <section class="ax-section ax-surface-light">
-      <div class="ax-container">
-        <div class="ax-programmes-toolbar">
-          <div class="ax-programmes-search ax-form-field">
-            <label for="programme-search">Search programmes</label>
-            <input id="programme-search" data-programmes-search type="search" placeholder="Search by role, division, code, or training area" autocomplete="off">
-          </div>
-          <div class="ax-view-toggle" role="group" aria-label="Programme view">
-            <button class="ax-button ax-button--outline ax-button--sm" type="button" data-view-toggle="cards" aria-pressed="true">Card view</button>
-            <button class="ax-button ax-button--outline ax-button--sm" type="button" data-view-toggle="register" aria-pressed="false">Register view</button>
-          </div>
-        </div>
-        <div class="ax-programmes-filters" data-programmes-filters aria-label="Programme groups"></div>
-        <div class="ax-programmes-results-head"><p data-programmes-count aria-live="polite">Loading programmes</p></div>
-        <div class="ax-grid ax-grid--3" data-programmes-results data-view="cards"><p class="ax-load-error">Loading programmes...</p></div>
-        <div class="ax-register-list" data-view="register" hidden role="table" aria-label="Programme register"></div>
-        <div class="ax-empty-state" data-programmes-empty hidden>
-          <h2>No programmes match that search.</h2>
-          <p>Try a wider role, division, or training-area term.</p>
-          <button class="ax-button ax-button--outline" type="button" data-clear-programmes>Clear search</button>
-        </div>
-        <noscript>
-          <section class="ax-noscript-index" aria-labelledby="static-programmes-heading">
-            <h2 id="static-programmes-heading">All programmes</h2>
-            <p>JavaScript is required for filtering. These links remain available for browsing.</p>
-            <ul>
-              <li><a href="programme.html?code=MIRTC">MIRTC - Diploma in Metro Rail Management</a></li>
-              <li><a href="programme.html?code=RIATC">RIATC - Diploma in Railway Management</a></li>
-              <li><a href="programme.html?code=AATC">AATC - Diploma in Aviation Management</a></li>
-              <li><a href="programme.html?code=HITC">HITC - Diploma in Hotel Management</a></li>
-              <li><a href="programme.html?code=TTMC">TTMC - Diploma in Travel &amp; Tourism Management</a></li>
-              <li><a href="programme.html?code=MITC">MITC - Diploma in Medical Management</a></li>
-              <li><a href="programme.html?code=PITC">PITC - Diploma in Pharmaceutical Management</a></li>
-              <li><a href="programme.html?code=EITC">EITC - Diploma in Electrical Management</a></li>
-              <li><a href="programme.html?code=SITC">SITC - Diploma in Security Management</a></li>
-              <li><a href="programme.html?code=TITC">TITC - Diploma in Education &amp; Teaching Management</a></li>
-              <li><a href="programme.html?code=BITC">BITC - Diploma in Banking Management</a></li>
-              <li><a href="programme.html?code=FITC">FITC - Diploma in Finance &amp; Accounting Management</a></li>
-              <li><a href="programme.html?code=PSDC">PSDC - Diploma in Professional Skill Development</a></li>
-              <li><a href="programme.html?code=LITC">LITC - Diploma in Logistics Management</a></li>
-              <li><a href="programme.html?code=HIMTC">HIMTC - Diploma in Healthcare Management</a></li>
-              <li><a href="programme.html?code=MIMC">MIMC - Diploma in Manufacturing Management</a></li>
-              <li><a href="programme.html?code=DITC">DITC - Diploma in Driver Management</a></li>
-              <li><a href="programme.html?code=RIMC">RIMC - Diploma in Retail Management</a></li>
-              <li><a href="programme.html?code=ITITC">ITITC - Diploma in IT Management</a></li>
-              <li><a href="programme.html?code=CETC">CETC - Diploma in Civil Management</a></li>
-              <li><a href="programme.html?code=EETC">EETC - Diploma in Electrical Management</a></li>
-            </ul>
-          </section>
-        </noscript>
+<meta property="og:type" content="website">
+<meta property="og:title" content="All 21 programmes | Apex Professional Academy">
+<meta property="og:description" content="Every Apex programme, searchable by training area and by the career-oriented roles it trains for.">
+<meta property="og:image" content="assets/img/ph-og.svg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/brand/apexlogo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/apex.css">
+<script>document.documentElement.classList.add("ax-ready");</script>
+</head>
+
+<body data-page="programmes">
+<a class="ax-skip" href="#main">Skip to content</a>
+
+<div class="ax-atmos" aria-hidden="true">
+  <span class="ax-atmos__orb ax-atmos__orb--1"></span>
+  <span class="ax-atmos__orb ax-atmos__orb--2"></span>
+</div>
+
+<div data-ax-header></div>
+
+<main id="main">
+
+  <section class="ax-phero">
+    <div class="ax-container">
+      <nav class="ax-crumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span aria-hidden="true">/</span><span>Programmes</span>
+      </nav>
+      <div class="ax-phero__inner">
+        <p class="ax-eyebrow">The full register</p>
+        <h1 class="ax-h1 ax-h1--page ax-mt-2">Twenty-one programmes, each one mapped to <em class="ax-serif">roles</em>.</h1>
+        <p class="ax-lead ax-mt-3">
+          Search by division, by certificate code, by a training area — or by the name of the
+          job you want. The search covers career-oriented roles as well as course content.
+        </p>
       </div>
-    </section>
-  </main>
-  <div data-ax-footer-mount></div>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="assets/js/nav.js"></script>
-  <script src="assets/js/motion.js"></script>
-  <script type="module">
-    import "./assets/js/programmes.js";
-    const clearButton = document.querySelector("[data-clear-programmes]");
-    clearButton?.addEventListener("click", () => {
-      const search = document.querySelector("[data-programmes-search]");
-      if (search) { search.value = ""; search.dispatchEvent(new Event("input")); }
-    });
-  </script>
+    </div>
+  </section>
+
+  <section class="ax-section ax-section--top-tight">
+    <div class="ax-container ax-container--wide">
+
+      <div class="ax-toolbar">
+        <div class="ax-search">
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5.6" stroke="currentColor" stroke-width="1.5"/><path d="M12.2 12.2L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <label class="ax-sr" for="ax-q">Search programmes, training areas and career roles</label>
+          <input class="ax-input" id="ax-q" type="search" autocomplete="off"
+                 placeholder="Try &ldquo;ticketing&rdquo;, &ldquo;AATC&rdquo; or &ldquo;inventory executive&rdquo;">
+        </div>
+
+        <div class="ax-viewtoggle" role="group" aria-label="Change how results are displayed">
+          <button type="button" data-view="cards" aria-pressed="true">Cards</button>
+          <button type="button" data-view="register" aria-pressed="false">Register</button>
+        </div>
+      </div>
+
+      <div class="ax-cluster ax-mt-3" role="group" aria-label="Filter by sector group">
+        <button class="ax-pill" type="button" data-group="Transport, Aviation &amp; Logistics" aria-pressed="false">Transport, Aviation &amp; Logistics</button>
+        <button class="ax-pill" type="button" data-group="Hospitality, Travel &amp; Retail" aria-pressed="false">Hospitality, Travel &amp; Retail</button>
+        <button class="ax-pill" type="button" data-group="Health &amp; Pharma" aria-pressed="false">Health &amp; Pharma</button>
+        <button class="ax-pill" type="button" data-group="Business, Technical &amp; Engineering" aria-pressed="false">Business, Technical &amp; Engineering</button>
+      </div>
+
+      <p class="ax-count ax-mt-3" data-ax-count role="status" aria-live="polite"></p>
+
+      <div class="ax-grid ax-grid--auto ax-mt-3" data-ax-results></div>
+
+      <div class="ax-table-wrap ax-mt-3" data-ax-table hidden>
+        <table class="ax-table">
+          <caption class="ax-sr">Apex programmes: code, division, programme title and career-oriented roles</caption>
+          <thead>
+            <tr>
+              <th scope="col">Code</th>
+              <th scope="col">Division</th>
+              <th scope="col">Programme</th>
+              <th scope="col">Career-oriented roles</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <p class="ax-notice ax-mt-5">
+        <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.4" stroke="currentColor" stroke-width="1.3"/><path d="M9 8.1v4.3M9 5.7v.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Completion of a training programme does not automatically guarantee employment,
+        appointment, government recruitment, professional registration or a particular salary.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Static, crawlable index. Always present, never rendered by JS, so every
+       programme page is reachable without scripting. -->
+  <section class="ax-section ax-section--tight" aria-labelledby="index-h">
+    <div class="ax-container">
+      <div class="ax-sec-head">
+        <p class="ax-eyebrow">Direct links</p>
+        <h2 class="ax-h2 ax-h2--sm ax-mt-2" id="index-h">Every programme, A to Z</h2>
+      </div>
+      <div class="ax-grid ax-grid--3 ax-gap-md">
+        <ul class="ax-footer__list">
+          <li><a href="programme.html?code=AATC">AATC — Aviation Division</a></li>
+          <li><a href="programme.html?code=BITC">BITC — Banking Division</a></li>
+          <li><a href="programme.html?code=CETC">CETC — Civil Engineering Division</a></li>
+          <li><a href="programme.html?code=DITC">DITC — Driver Services Division</a></li>
+          <li><a href="programme.html?code=EETC">EETC — Electrical Engineering Division</a></li>
+          <li><a href="programme.html?code=EITC">EITC — Electrical Division</a></li>
+          <li><a href="programme.html?code=FITC">FITC — Finance &amp; Accounting Division</a></li>
+        </ul>
+        <ul class="ax-footer__list">
+          <li><a href="programme.html?code=HIMTC">HIMTC — Healthcare Division</a></li>
+          <li><a href="programme.html?code=HITC">HITC — Hospitality Division</a></li>
+          <li><a href="programme.html?code=ITITC">ITITC — IT &amp; Technology Division</a></li>
+          <li><a href="programme.html?code=LITC">LITC — Logistics Division</a></li>
+          <li><a href="programme.html?code=MIMC">MIMC — Manufacturing Division</a></li>
+          <li><a href="programme.html?code=MIRTC">MIRTC — Metro &amp; Rail Division</a></li>
+          <li><a href="programme.html?code=MITC">MITC — Medical Division</a></li>
+        </ul>
+        <ul class="ax-footer__list">
+          <li><a href="programme.html?code=PITC">PITC — Pharmaceutical Division</a></li>
+          <li><a href="programme.html?code=PSDC">PSDC — Professional Skill Development</a></li>
+          <li><a href="programme.html?code=RIATC">RIATC — Railway Division</a></li>
+          <li><a href="programme.html?code=RIMC">RIMC — Retail Division</a></li>
+          <li><a href="programme.html?code=SITC">SITC — Security Division</a></li>
+          <li><a href="programme.html?code=TITC">TITC — Education Division</a></li>
+          <li><a href="programme.html?code=TTMC">TTMC — Travel &amp; Tourism Division</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-ax-footer></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="assets/data/programmes.js" defer></script>
+<script src="assets/js/pages.js" defer></script>
+<script src="assets/js/apex.js" defer></script>
 </body>
 </html>
