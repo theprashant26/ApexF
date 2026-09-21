@@ -1,0 +1,4 @@
+# Replace the sitemap placeholder with the deployed HTTPS origin before launch.
+User-agent: *
+Allow: /
+Sitemap: {{PLACEHOLDER: production site origin}}/sitemap.xml

@@ -1,0 +1,92 @@
+.ax-container {
+  width: min(calc(100% - 2rem), var(--ax-content-width));
+  margin-inline: auto;
+}
+
+.ax-section {
+  padding: clamp(4rem, 8vw, 8rem) 0;
+}
+
+.ax-section__header {
+  max-width: 48rem;
+  margin-bottom: 2.5rem;
+}
+
+.ax-section__header h2 {
+  margin-bottom: .8rem;
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+}
+
+.ax-section__header p {
+  margin-bottom: 0;
+  color: var(--ax-steel);
+  font-size: 1.0625rem;
+}
+
+.ax-section__rule {
+  width: 4rem;
+  height: 3px;
+  margin-top: 1.2rem;
+  background: var(--ax-gold);
+  transform-origin: left center;
+}
+
+.ax-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.ax-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ax-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ax-grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ax-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ax-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+}
+
+.ax-split {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .ax-grid--4,
+  .ax-grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .ax-container {
+    width: min(calc(100% - 1.5rem), var(--ax-content-width));
+  }
+
+  .ax-grid--2,
+  .ax-grid--3,
+  .ax-grid--4 {
+    grid-template-columns: 1fr;
+  }
+
+  .ax-split {
+    display: block;
+  }
+}

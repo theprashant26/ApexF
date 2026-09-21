@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery | Apex Professional Academy</title>
+  <meta name="description" content="Explore placeholder gallery slots for Apex Professional Academy campus, training, and learner imagery.">
+  <link rel="canonical" href="gallery.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <div data-ax-header-mount></div>
+  <main id="main-content">
+    <section class="ax-page-banner ax-surface-dark">
+      <div class="ax-container">
+        <p class="ax-styleguide__label ax-styleguide__label--dark">Inside the academy</p>
+        <h1>Spaces, practice, and people.</h1>
+        <p>Client imagery will be placed into these registered slots when supplied.</p>
+      </div>
+    </section>
+    <section class="ax-section ax-surface-light" data-gallery>
+      <div class="ax-container">
+        <div class="ax-gallery-toolbar">
+          <div class="ax-cluster">
+            <button class="ax-filter-pill" type="button" data-gallery-filter="" aria-pressed="true">All</button>
+            <button class="ax-filter-pill" type="button" data-gallery-filter="campus" aria-pressed="false">Campus</button>
+            <button class="ax-filter-pill" type="button" data-gallery-filter="training" aria-pressed="false">Training</button>
+            <button class="ax-filter-pill" type="button" data-gallery-filter="people" aria-pressed="false">People</button>
+          </div>
+        </div>
+        <div class="ax-gallery-grid">
+          <button class="ax-image-card ax-image-card--wide" type="button" data-gallery-item data-category="campus" aria-label="Open campus image"><img src="assets/img/placeholders/ax-gallery-landscape.svg" width="1600" height="1067" loading="lazy" alt="Placeholder for campus image"></button>
+          <button class="ax-image-card ax-image-card--portrait" type="button" data-gallery-item data-category="people" aria-label="Open learner image"><img src="assets/img/placeholders/ax-gallery-portrait.svg" width="1067" height="1600" loading="lazy" alt="Placeholder for learner image"></button>
+          <button class="ax-image-card ax-image-card--square" type="button" data-gallery-item data-category="training" aria-label="Open training image"><img src="assets/img/placeholders/ax-gallery-square.svg" width="1200" height="1200" loading="lazy" alt="Placeholder for practical training image"></button>
+          <button class="ax-image-card ax-image-card--square" type="button" data-gallery-item data-category="training" aria-label="Open student work image"><img src="assets/img/placeholders/ax-gallery-square.svg" width="1200" height="1200" loading="lazy" alt="Placeholder for student work image"></button>
+          <button class="ax-image-card ax-image-card--wide" type="button" data-gallery-item data-category="campus" aria-label="Open classroom image"><img src="assets/img/placeholders/ax-gallery-landscape.svg" width="1600" height="1067" loading="lazy" alt="Placeholder for classroom image"></button>
+          <button class="ax-image-card ax-image-card--portrait" type="button" data-gallery-item data-category="people" aria-label="Open trainer image"><img src="assets/img/placeholders/ax-gallery-portrait.svg" width="1067" height="1600" loading="lazy" alt="Placeholder for trainer image"></button>
+        </div>
+        <div class="ax-lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="Gallery image preview">
+          <button class="ax-button ax-button--outline-dark ax-lightbox__close" type="button" data-lightbox-close>Close</button>
+          <button class="ax-button ax-button--outline-dark ax-lightbox__previous" type="button" data-lightbox-previous aria-label="Previous image">Previous</button>
+          <img data-lightbox-image width="1600" height="1067" loading="lazy" alt="">
+          <button class="ax-button ax-button--outline-dark ax-lightbox__next" type="button" data-lightbox-next aria-label="Next image">Next</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div data-ax-footer-mount></div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/motion.js"></script>
+  <script type="module" src="assets/js/gallery.js"></script>
+</body>
+</html>

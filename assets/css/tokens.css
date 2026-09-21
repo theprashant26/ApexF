@@ -1,0 +1,24 @@
+:root {
+  --ax-navy: #143163;
+  --ax-navy-deep: #0A1C3D;
+  --ax-navy-mid: #22497F;
+  --ax-gold: #C39A4B;
+  --ax-gold-lite: #E3C685;
+  --ax-gold-tint: #F7F0E1;
+  --ax-ink: #11182A;
+  --ax-steel: #5A6780;
+  --ax-paper: #F5F7FB;
+  --ax-line: #DFE5EF;
+  --ax-line-dark: #2B3F66;
+  --ax-white: #FFFFFF;
+
+  --font-display: "Inter Tight", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --ax-radius-control: 2px;
+  --ax-radius-card: 10px;
+  --ax-radius-media: 24px;
+  --ax-shadow-elevated: 0 24px 60px -30px rgba(10, 28, 61, .55);
+  --ax-content-width: 1240px;
+  --ax-copy-width: 62ch;
+}

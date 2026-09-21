@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Replace {{PLACEHOLDER: production site origin}} with the deployed HTTPS origin before launch. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{PLACEHOLDER: production site origin}}/index.html</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/about.html</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programmes.html</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/careers.html</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/admissions.html</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/gallery.html</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/contact.html</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/disclaimer.html</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/404.html</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=MIRTC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=RIATC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=AATC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=HITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=TTMC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=MITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=PITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=EITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=SITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=TITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=BITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=FITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=PSDC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=LITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=HIMTC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=MIMC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=DITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=RIMC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=ITITC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=CETC</loc></url>
+  <url><loc>{{PLACEHOLDER: production site origin}}/programme.html?code=EETC</loc></url>
+</urlset>
