@@ -687,6 +687,9 @@ p{ margin:0; }
   -webkit-background-clip:text; background-clip:text;
   color:transparent; -webkit-text-fill-color:transparent;
 }
+/* A word rather than a figure in a stat slot — same treatment, saner scale. */
+.ax-stat__value--word{ font-size:clamp(1.5rem,2.4vw,2.1rem); letter-spacing:-.028em; }
+
 .ax-stat__label{
   margin-top:.6rem; font-size:.82rem; color:var(--ax-muted);
   letter-spacing:.02em;
@@ -1010,6 +1013,21 @@ p{ margin:0; }
 .ax-table tbody tr:last-child td{ border-bottom:0; }
 .ax-table a{ color:#fff; font-weight:500; }
 .ax-table a:hover{ color:var(--ax-gold-2); }
+
+/* Spec table: a two-column label/value sheet rather than a data grid. */
+.ax-table--spec th[scope="row"]{
+  width:36%; text-align:left; padding:.9rem 1.1rem;
+  font-family:var(--ax-f-display); font-size:.85rem; font-weight:500;
+  color:var(--ax-muted); background:rgba(255,255,255,.02);
+  border-bottom:1px solid var(--ax-line); vertical-align:top;
+  text-transform:none; letter-spacing:0; white-space:normal;
+}
+.ax-table--spec td{ color:var(--ax-text); }
+.ax-table--spec tr:last-child th,.ax-table--spec tr:last-child td{ border-bottom:0; }
+@media (max-width:560px){
+  .ax-table--spec th[scope="row"]{ width:auto; display:block; border-bottom:0; padding-bottom:.2rem; }
+  .ax-table--spec td{ display:block; padding-top:0; }
+}
 
 /* Accordion */
 .ax-acc{ border-top:1px solid var(--ax-line); }

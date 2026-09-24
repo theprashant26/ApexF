@@ -52,19 +52,28 @@
      Every unknown real-world fact lives here and nowhere else, so the client
      can fill them in one pass. Listed in REQUIREMENTS.md. */
   AX.PH = {
+    /* Still outstanding from the client. Everything they have confirmed now
+       lives in AX_ACADEMY (assets/data/programmes.js) instead of here. */
     phone: "{{PLACEHOLDER: primary phone number}}",
-    phoneAlt: "{{PLACEHOLDER: secondary phone / WhatsApp number}}",
+    whatsapp: "{{PLACEHOLDER: WhatsApp number}}",
+    phoneAlt: "{{PLACEHOLDER: secondary phone number}}",
     email: "{{PLACEHOLDER: admissions email address}}",
-    address: "{{PLACEHOLDER: full campus address with city and PIN}}",
-    hours: "{{PLACEHOLDER: office days and hours}}",
+    emailGeneral: "{{PLACEHOLDER: general enquiries email address}}",
     formEndpoint: "{{PLACEHOLDER: form submission endpoint URL}}",
     mapEmbed: "{{PLACEHOLDER: Google Maps embed URL}}",
-    social: "{{PLACEHOLDER: social profile URL}}",
-    duration: "{{PLACEHOLDER: programme duration}}",
-    eligibility: "{{PLACEHOLDER: minimum eligibility}}",
-    fees: "{{PLACEHOLDER: fee structure}}",
-    documents: "{{PLACEHOLDER: documents required at enrolment}}",
-    batches: "{{PLACEHOLDER: batch start dates}}"
+    social: "{{PLACEHOLDER: official profile URL}}",
+    duration: "{{PLACEHOLDER: duration}}",
+    trainingHours: "{{PLACEHOLDER: training hours}}",
+    eligibility: "{{PLACEHOLDER: eligibility}}",
+    nextBatch: "{{PLACEHOLDER: next batch date}}",
+    registration: "{{PLACEHOLDER: legal / registration status}}",
+    faculty: "{{PLACEHOLDER: faculty names and profiles}}",
+    transferPeriod: "{{PLACEHOLDER: transfer request period}}",
+    enquiryRetention: "{{PLACEHOLDER: enquiry record retention period}}",
+    recordRetention: "{{PLACEHOLDER: student academic record retention period}}",
+    policyUpdated: "{{PLACEHOLDER: policy last-updated date}}",
+    policyEffective: "{{PLACEHOLDER: policy effective date}}",
+    policyVersion: "{{PLACEHOLDER: policy version}}"
   };
 
   AX.ph = function (key) {
@@ -79,6 +88,7 @@
   AX.groups = GROUPS;
   AX.features = window.AX_FEATURES || [];
   AX.compliance = window.AX_COMPLIANCE || { policy: "", roles: "" };
+  AX.academy = window.AX_ACADEMY || {};
 
   AX.byCode = function (code) {
     if (!code) return null;
@@ -234,6 +244,7 @@
 
   function footerHTML() {
     var s = AX.stats();
+    var ACAD = AX.academy || {};
     var groupLinks = GROUPS.map(function (g) {
       return '<li><a href="programmes.html?group=' + AX.slugParam(g.name) + '">' + AX.esc(g.short) + "</a></li>";
     }).join("");
@@ -268,8 +279,13 @@
       '<div class="ax-container">' +
         '<div class="ax-footer__grid">' +
           "<div>" + brandHTML() +
-            '<p class="ax-body ax-body--sm ax-mt-3">Apex Institute of Multidisciplinary Professional Studies — short code AIMPS. ' +
+            '<p class="ax-body ax-body--sm ax-mt-3">Apex Institute of Multidisciplinary Professional Studies — APA / AIMPS. ' +
             s.programmes + " sector-focused training programmes mapped to " + s.roles + " career-oriented roles.</p>" +
+            (ACAD.address
+              ? '<p class="ax-small ax-mt-3">' + AX.esc(ACAD.address.oneLine) + "</p>" : "") +
+            (ACAD.hours
+              ? '<p class="ax-small ax-mt-1">' + AX.esc(ACAD.hours.weekdays) + " · " +
+                AX.esc(ACAD.hours.sunday) + "</p>" : "") +
             '<div class="ax-social ax-mt-4">' + socials + "</div>" +
           "</div>" +
           '<div><p class="ax-footer__title">Explore</p><ul class="ax-footer__list">' + pageLinks + "</ul></div>" +

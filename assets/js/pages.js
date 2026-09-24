@@ -12,6 +12,40 @@
     return fn;
   }
 
+
+  /* The "Programme Details" table the client specified. Confirmed facts come
+     from AX_ACADEMY; the per-programme fields they have not supplied yet render
+     as visible placeholder chips rather than being guessed at. */
+  function detailsBlock(p) {
+    var AX = window.AX, a = AX.academy || {}, fee = a.fee || {};
+    var pf = p.fee || {};
+    var rows = [
+      ["Programme code", '<span class="ax-code">' + AX.esc(p.code) + "</span>"],
+      ["Duration", AX.ph("duration")],
+      ["Training hours", AX.ph("trainingHours")],
+      ["Eligibility", AX.ph("eligibility")],
+      ["Age requirement", "No general age restriction, unless specified for this programme"],
+      ["Learning mode", AX.esc(a.batch ? a.batch.types : "")],
+      ["Programme fee", '<b class="ax-gold">' + AX.esc(pf.total || "") + "</b>" +
+        (pf.confirmed ? "" : ' <span class="ax-small">(provisional)</span>')],
+      ["First instalment", AX.esc(pf.first || "") +
+        ' <span class="ax-small">— part of the total, not an extra charge</span>'],
+      ["Instalment facility", AX.esc(fee.instalment || "")],
+      ["Next batch", AX.ph("nextBatch")],
+      ["Certificate", AX.esc(p.certificate)]
+    ];
+    var body = rows.map(function (r) {
+      return '<tr><th scope="row">' + AX.esc(r[0]) + "</th><td>" + r[1] + "</td></tr>";
+    }).join("");
+
+    return '<h2 class="ax-h2 ax-h2--sm ax-mt-6" data-reveal>Programme details</h2>' +
+      '<div class="ax-table-wrap ax-mt-3" data-reveal>' +
+        '<table class="ax-table ax-table--spec"><tbody>' + body + "</tbody></table>" +
+      "</div>" +
+      '<p class="ax-small ax-mt-2">Fees, inclusions and exclusions are confirmed before enrolment. ' +
+      'See <a class="ax-link" href="admissions.html">admissions</a> for the full fee breakdown and the document list.</p>';
+  }
+
   /* ── Shared renderers ─────────────────────────────────────────────────── */
   function pcard(p, roleLimit) {
     var AX = window.AX;
@@ -374,6 +408,7 @@
 
             '<h2 class="ax-h2 ax-h2--sm ax-mt-6" data-reveal>' +
               "Career-oriented roles this programme trains for</h2>" +
+            '<p class="ax-body ax-mt-2" data-reveal>' + AX.esc((AX.academy || {}).careerStatement || "") + "</p>" +
             '<div class="ax-cluster ax-mt-3" data-reveal>' + roles + "</div>" +
             '<div class="ax-mt-3" data-reveal>' + AX.noticeRoles() + "</div>" +
 
@@ -381,15 +416,7 @@
             '<p class="ax-body ax-mt-2">Depending on the programme, students may receive:</p>' +
             '<ul class="ax-checklist ax-mt-3" data-reveal>' + features + "</ul>" +
 
-            '<div class="ax-panel ax-panel--pad ax-mt-5" data-reveal>' +
-              '<h3 class="ax-h4">Programme details to be confirmed</h3>' +
-              '<div class="ax-cluster ax-mt-2">' +
-                "<span>Duration: " + AX.ph("duration") + "</span>" +
-                "<span>Eligibility: " + AX.ph("eligibility") + "</span>" +
-                "<span>Fees: " + AX.ph("fees") + "</span>" +
-              "</div>" +
-              '<p class="ax-small ax-mt-2">These are published once confirmed by the institute.</p>' +
-            "</div>" +
+            detailsBlock(p) +
           "</div>" +
 
           '<aside class="ax-sticky">' +
@@ -648,6 +675,126 @@
     });
   }
 
+
+  /* ── Academy facts ────────────────────────────────────────────────────
+     Fills every mount point that displays client-confirmed copy. Runs on
+     every page; each lookup is guarded, so a page without a given mount
+     simply skips it. One source of truth: AX_ACADEMY. */
+  function initAcademy() {
+    var AX = window.AX, $ = AX.$, $$ = AX.$$;
+    var a = AX.academy || {};
+    if (!a.name) return;
+    var fee = a.fee || {}, batch = a.batch || {}, legal = a.legal || {};
+
+    function put(sel, html) {
+      var el = $(sel);
+      if (el) el.innerHTML = html;
+    }
+    function list(sel, items, tag) {
+      var el = $(sel);
+      if (!el || !items) return;
+      el.innerHTML = items.map(function (i) {
+        return "<" + (tag || "li") + ">" + AX.esc(i) + "</" + (tag || "li") + ">";
+      }).join("");
+    }
+
+    /* Fees. The headline figures are derived from the 21 programme entries so
+       they can never drift from what the programme pages actually show. */
+    function money(v) { return parseInt(String(v).replace(/[^0-9]/g, ""), 10) || 0; }
+    function range(key) {
+      var vals = AX.programmes.map(function (pr) { return (pr.fee || {})[key]; }).filter(Boolean);
+      if (!vals.length) return "";
+      var sorted = vals.slice().sort(function (x, y) { return money(x) - money(y); });
+      var lo = sorted[0], hi = sorted[sorted.length - 1];
+      return lo === hi ? AX.esc(lo) : AX.esc(lo) + " – " + AX.esc(hi);
+    }
+    put("[data-ax-fee-total]", range("total"));
+    put("[data-ax-fee-reg]", range("first"));
+    put("[data-ax-fee-emi]", AX.esc(fee.instalment || ""));
+    put("[data-ax-fee-structure]", AX.esc(fee.structureNote || ""));
+
+    /* A per-programme fee table, so the range above is never the whole story. */
+    var ft = $("[data-ax-fee-table]");
+    if (ft) {
+      ft.innerHTML = '<table class="ax-table"><caption class="ax-sr">Programme fees</caption>' +
+        '<thead><tr><th scope="col">Code</th><th scope="col">Programme</th>' +
+        '<th scope="col">Total fee</th><th scope="col">First instalment</th></tr></thead><tbody>' +
+        AX.programmes.map(function (pr) {
+          var f = pr.fee || {};
+          return '<tr><td data-th="Code"><span class="ax-code">' + AX.esc(pr.code) + "</span></td>" +
+            '<td data-th="Programme"><a href="programme.html?code=' + AX.esc(pr.code) + '">' +
+              AX.esc(pr.division) + "</a></td>" +
+            '<td data-th="Total fee"><b class="ax-gold">' + AX.esc(f.total || "") + "</b>" +
+              (f.confirmed ? "" : " *") + "</td>" +
+            '<td data-th="First instalment">' + AX.esc(f.first || "") + "</td></tr>";
+        }).join("") + "</tbody></table>";
+    }
+    list("[data-ax-fee-includes]", fee.includes);
+    list("[data-ax-fee-excludes]", fee.excludes);
+    put("[data-ax-fee-note]", AX.esc(fee.note || ""));
+
+    /* Eligibility + age */
+    var elig = $("[data-ax-eligibility]");
+    if (elig && a.eligibilityOptions) {
+      elig.innerHTML = '<table class="ax-table ax-table--spec"><tbody>' +
+        a.eligibilityOptions.map(function (r) {
+          return '<tr><th scope="row">' + AX.esc(r[0]) + "</th><td>" + AX.esc(r[1]) + "</td></tr>";
+        }).join("") + "</tbody></table>";
+    }
+    put("[data-ax-age]", "<strong class=\"ax-gold\">Age requirement.</strong> " + AX.esc(a.ageRequirement || ""));
+
+    /* Documents */
+    list("[data-ax-documents]", a.documents);
+    put("[data-ax-doc-warning]", AX.icon.info + "<span>" + AX.esc(a.documentsWarning || "") + "</span>");
+
+    /* Batches and modes */
+    put("[data-ax-batch-types]", AX.esc(batch.types || ""));
+    put("[data-ax-batch-rolling]", AX.esc(batch.rolling || ""));
+    list("[data-ax-modes]", a.learningModes);
+
+    /* About */
+    put("[data-ax-about-intro]", AX.esc(a.about ? a.about.intro : ""));
+    put("[data-ax-about-aim]", AX.esc(a.about ? a.about.aim : ""));
+    put("[data-ax-about-audience]", AX.esc(a.about ? a.about.audience : ""));
+    put("[data-ax-about-background]", AX.esc(a.about ? a.about.background : ""));
+    list("[data-ax-approach]", a.approach);
+    put("[data-ax-established]", AX.esc(a.established || ""));
+    put("[data-ax-founder]", AX.esc(a.founder || ""));
+    put("[data-ax-positioning]", AX.esc(a.positioning || ""));
+    put("[data-ax-supporting]", AX.esc(a.supportingLine || ""));
+    put("[data-ax-career-statement]", AX.esc(a.careerStatement || ""));
+    put("[data-ax-certificate-desc]", AX.esc(a.certificate ? a.certificate.description : ""));
+    put("[data-ax-certificate-caution]",
+        AX.icon.info + "<span>" + AX.esc(a.certificate ? a.certificate.caution : "") + "</span>");
+
+    /* Contact */
+    var addr = $("[data-ax-address]");
+    if (addr && a.address) {
+      addr.innerHTML = a.address.lines.map(AX.esc).join("<br>");
+    }
+    put("[data-ax-hours]", a.hours
+      ? AX.esc(a.hours.weekdays) + "<br>" + AX.esc(a.hours.sunday) : "");
+    put("[data-ax-desk]", AX.esc(a.admissionsDesk || ""));
+
+    /* Legal */
+    list("[data-ax-fee-policy]", legal.feePolicy, "p");
+    put("[data-ax-refund-intro]", AX.esc(legal.refundIntro || ""));
+    var refund = $("[data-ax-refund]");
+    if (refund && legal.refundSections) {
+      refund.innerHTML = legal.refundSections.map(function (sec) {
+        return "<h3>" + AX.esc(sec[0]) + "</h3>" +
+          sec[1].map(function (t) { return "<p>" + AX.esc(t) + "</p>"; }).join("");
+      }).join("");
+    }
+    put("[data-ax-refund-processing]", AX.esc(legal.refundProcessing || ""));
+    put("[data-ax-transfer-intro]", AX.esc(legal.transferIntro || ""));
+    list("[data-ax-transfer-factors]", legal.transferFactors);
+    put("[data-ax-transfer-fee]", AX.esc(legal.transferFee || ""));
+    list("[data-ax-data-purposes]", legal.dataPurposes);
+    put("[data-ax-data-retention]", AX.esc(legal.dataRetention || ""));
+    list("[data-ax-disclaimer]", legal.disclaimer, "p");
+  }
+
   /* ── Dispatch ─────────────────────────────────────────────────────────── */
   var PAGES = {
     home: initHome,
@@ -660,7 +807,8 @@
   window.AX_PAGE = ready(function () {
     var key = document.body.getAttribute("data-page");
     if (PAGES[key]) PAGES[key]();
-    // Forms and lightboxes can appear on any page.
+    // These can appear on any page.
+    initAcademy();
     initForms();
   });
 })();

@@ -84,19 +84,13 @@
       <div class="ax-grid ax-grid--2 ax-gap-lg ax-items-start">
         <div>
           <p class="ax-eyebrow" data-reveal>Before you apply</p>
-          <h2 class="ax-h2 ax-h2--sm ax-mt-2" id="req-h" data-reveal="1">Eligibility and documents</h2>
+          <h2 class="ax-h2 ax-h2--sm ax-mt-2" id="req-h" data-reveal="1">Eligibility and age</h2>
           <p class="ax-body ax-mt-3" data-reveal="2">
-            Requirements vary by programme and are confirmed during counselling. We publish
-            them here once the institute has confirmed them, rather than listing an estimate.
+            Eligibility is programme-specific. The requirement that applies to a given
+            programme is shown on that programme&rsquo;s own page.
           </p>
-          <ul class="ax-areas ax-one-col ax-mt-3" data-reveal="2">
-            <li>Minimum eligibility — <span class="ax-ph">{{PLACEHOLDER: minimum eligibility}}</span></li>
-            <li>Age requirement — <span class="ax-ph">{{PLACEHOLDER: age requirement, if any}}</span></li>
-            <li>Documents at enrolment — <span class="ax-ph">{{PLACEHOLDER: documents required at enrolment}}</span></li>
-            <li>Programme duration — <span class="ax-ph">{{PLACEHOLDER: programme duration}}</span></li>
-            <li>Fees and payment terms — <span class="ax-ph">{{PLACEHOLDER: fee structure}}</span></li>
-            <li>Batch start dates — <span class="ax-ph">{{PLACEHOLDER: batch start dates}}</span></li>
-          </ul>
+          <div class="ax-table-wrap ax-mt-3" data-reveal="2" data-ax-eligibility></div>
+          <p class="ax-body ax-body--sm ax-mt-3" data-reveal="2" data-ax-age></p>
         </div>
 
         <div>
@@ -127,8 +121,10 @@
                 </button>
               </h3>
               <div class="ax-acc__panel" id="faq-2">
-                <div>Classroom or online learning is listed among the common programme features.
-                Which modes are available for a specific programme is confirmed during counselling.</div>
+                <div>Depending on the programme, training may be offered as classroom training,
+                online training, hybrid/blended training or practical/workshop sessions. Batches run
+                in Distance Learning or Regular Mode. The available mode is stated on each
+                programme page and confirmed during counselling.</div>
               </div>
             </div>
 
@@ -140,10 +136,11 @@
                 </button>
               </h3>
               <div class="ax-acc__panel" id="faq-3">
-                <div>A course completion certificate, subject to institute requirements, naming the
-                programme and its certificate code. Apex Professional Academy clearly distinguishes
-                its own training certificates from government, university, statutory-board or
-                professional-licensing qualifications.</div>
+                <div>On successfully completing the prescribed training programme and fulfilling the
+                applicable academic requirements, eligible learners may be awarded a Course Completion
+                Certificate by Apex Professional Academy, identifying the programme completed and its
+                programme code. It is not a government certificate, a university degree, a statutory
+                licence or an accredited qualification.</div>
               </div>
             </div>
 
@@ -170,12 +167,139 @@
                 </button>
               </h3>
               <div class="ax-acc__panel" id="faq-5">
-                <div>Transfer and withdrawal terms are set by the institute —
-                <span class="ax-ph">{{PLACEHOLDER: transfer and withdrawal policy}}</span>.
-                Raise it during counselling before you enrol.</div>
+                <div>You may request a transfer to another programme, subject to seat
+                availability, your eligibility for the new programme, the fee difference, training
+                already completed and batch availability. If the new programme costs more, you may
+                need to pay the difference. Fees already paid are not refundable &mdash; see the
+                <a class="ax-link" href="disclaimer.html#refund">refund policy</a>.</div>
+              </div>
+            </div>
+
+            <div class="ax-acc__item">
+              <h3>
+                <button class="ax-acc__btn" type="button" aria-expanded="false" aria-controls="faq-6">
+                  What does a programme cost?
+                  <span class="ax-acc__icon" aria-hidden="true">+</span>
+                </button>
+              </h3>
+              <div class="ax-acc__panel" id="faq-6">
+                <div>There are two fee bands. The Aviation, Metro &amp; Rail, Railway, Hospitality
+                and Travel &amp; Tourism programmes are <b class="ax-gold">&#8377;43,999</b> with a
+                first instalment of <b class="ax-gold">&#8377;13,999</b>. Every other programme is
+                <b class="ax-gold">&#8377;25,500</b> with a first instalment of
+                <b class="ax-gold">&#8377;10,500</b>. The first instalment is part of the total fee,
+                not a charge on top of it. See the fee table above for each programme.</div>
+              </div>
+            </div>
+
+            <div class="ax-acc__item">
+              <h3>
+                <button class="ax-acc__btn" type="button" aria-expanded="false" aria-controls="faq-7">
+                  Are fees refundable?
+                  <span class="ax-acc__icon" aria-hidden="true">+</span>
+                </button>
+              </h3>
+              <div class="ax-acc__panel" id="faq-7">
+                <div>No. All fees paid to Apex Professional Academy, whether full or partial, are
+                strictly non-refundable under any circumstances, and cannot be adjusted or
+                transferred to another course, batch or candidate. Please read the
+                <a class="ax-link" href="disclaimer.html#refund">full refund policy</a> before
+                enrolling &mdash; enrolling means you agree to be bound by it.</div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ax-section ax-section--tight" aria-labelledby="fees-h">
+    <div class="ax-container">
+      <div class="ax-sec-head">
+        <p class="ax-eyebrow" data-reveal>Fees</p>
+        <h2 class="ax-h2 ax-h2--sm ax-mt-2" id="fees-h" data-reveal="1">Programme fee and what it covers</h2>
+        <p class="ax-lead ax-mt-3" data-reveal="2">
+          Fees are set according to the selected programme, its duration and its training
+          structure. The payment schedule is confirmed before enrolment.
+        </p>
+      </div>
+
+      <div class="ax-grid ax-grid--3 ax-gap-md ax-mb-4">
+        <div class="ax-panel ax-panel--pad ax-spot" data-reveal>
+          <p class="ax-stat__value ax-stat__value--word" data-ax-fee-total></p>
+          <p class="ax-stat__label">Total programme fee</p>
+        </div>
+        <div class="ax-panel ax-panel--pad ax-spot" data-reveal="1">
+          <p class="ax-stat__value ax-stat__value--word" data-ax-fee-reg></p>
+          <p class="ax-stat__label">First instalment</p>
+        </div>
+        <div class="ax-panel ax-panel--pad ax-spot" data-reveal="2">
+          <p class="ax-stat__value ax-stat__value--word" data-ax-fee-emi></p>
+          <p class="ax-stat__label">Instalment facility</p>
+        </div>
+      </div>
+
+      <div class="ax-grid ax-grid--2 ax-gap-lg ax-items-start">
+        <div class="ax-panel ax-panel--pad" data-reveal>
+          <h3 class="ax-h4">The fee may include</h3>
+          <ul class="ax-checklist ax-one-col ax-mt-3" data-ax-fee-includes></ul>
+        </div>
+        <div class="ax-panel ax-panel--pad" data-reveal="1">
+          <h3 class="ax-h4">The fee does not include</h3>
+          <ul class="ax-areas ax-one-col ax-mt-3" data-ax-fee-excludes></ul>
+        </div>
+      </div>
+
+      <p class="ax-body ax-mt-4" data-ax-fee-structure></p>
+
+      <h3 class="ax-h4 ax-mt-5" data-reveal>Fee by programme</h3>
+      <div class="ax-table-wrap ax-mt-3" data-ax-fee-table data-reveal></div>
+      <p class="ax-small ax-mt-3" data-ax-fee-note></p>
+      <p class="ax-notice ax-mt-3">
+        <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.4" stroke="currentColor" stroke-width="1.3"/><path d="M9 8.1v4.3M9 5.7v.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span><strong>Fees are non-refundable.</strong> Please read the
+        <a class="ax-link" href="disclaimer.html#refund">refund policy</a> in full before
+        you enrol. By enrolling you agree to be bound by it.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="ax-section ax-section--tight" aria-labelledby="docs-h">
+    <div class="ax-container">
+      <div class="ax-grid ax-grid--2 ax-gap-lg ax-items-start">
+        <div>
+          <p class="ax-eyebrow" data-reveal>At enrolment</p>
+          <h2 class="ax-h2 ax-h2--sm ax-mt-2" id="docs-h" data-reveal="1">Documents to bring</h2>
+          <p class="ax-body ax-mt-3" data-reveal="2">
+            Bring the following, as applicable to your programme and prior qualifications.
+          </p>
+          <p class="ax-notice ax-mt-3" data-reveal="2" data-ax-doc-warning></p>
+        </div>
+        <ol class="ax-areas ax-one-col" data-ax-documents data-reveal="1"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="ax-section ax-section--tight" aria-labelledby="batch-h">
+    <div class="ax-container">
+      <div class="ax-grid ax-grid--2 ax-gap-lg ax-items-start">
+        <div class="ax-panel ax-panel--pad" data-reveal>
+          <p class="ax-eyebrow">Batches</p>
+          <h2 class="ax-h2 ax-h2--sm ax-mt-2" id="batch-h">Admission schedule</h2>
+          <p class="ax-body ax-mt-3"><strong class="ax-gold">Batch type:</strong>
+            <span data-ax-batch-types></span></p>
+          <p class="ax-body ax-mt-3" data-ax-batch-rolling></p>
+          <p class="ax-body ax-mt-3">Next batch:
+            <span class="ax-ph">{{PLACEHOLDER: next batch date}}</span></p>
+        </div>
+        <div class="ax-panel ax-panel--pad" data-reveal="1">
+          <p class="ax-eyebrow">Learning modes</p>
+          <h3 class="ax-h2 ax-h2--sm ax-mt-2">How training is delivered</h3>
+          <p class="ax-body ax-mt-3">Depending on the programme, training may be offered through:</p>
+          <ul class="ax-checklist ax-one-col ax-mt-3" data-ax-modes></ul>
+          <p class="ax-small ax-mt-3">
+            The available learning mode is stated on each programme page.
+          </p>
         </div>
       </div>
     </div>

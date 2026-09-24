@@ -245,37 +245,81 @@ why the header shows it on a white chip. Please supply:
 
 ## 7. Placeholder register
 
-Every unknown real-world fact. The site-wide ones live in **one object**, `AX.PH` in
-`assets/js/apex.js`; page-specific ones are inline `<span class="ax-ph">` tokens. All of
-them render as a visible dashed gold chip, so nothing can ship unnoticed.
+The client supplied a content pack on 24 Sep 2026. Everything they confirmed now lives in
+`AX_ACADEMY` (`assets/data/programmes.js`); what follows is only what is **still open**.
+Each renders as a visible dashed gold chip on the page, so nothing can ship unnoticed.
+
+### Still outstanding
 
 | Token | Where it appears |
 |---|---|
-| `primary phone number` | footer-adjacent copy, contact, admissions |
-| `secondary phone / WhatsApp number` | contact |
+| `primary phone number` | contact, admissions |
+| `WhatsApp number` | contact |
+| `secondary phone number` | contact |
 | `admissions email address` | contact, disclaimer |
-| `full campus address with city and PIN` | contact, disclaimer |
-| `office days and hours` | contact |
-| `Google Maps embed URL` | contact |
+| `general enquiries email address` | contact |
+| `official profile URL` | footer, ×4 networks |
 | `form submission endpoint URL` | admissions, contact |
-| `social profile URL` | footer, ×4 networks |
-| `programme duration` | programme detail, admissions |
-| `minimum eligibility` | programme detail, admissions |
-| `fee structure` | programme detail, admissions |
-| `documents required at enrolment` | admissions |
-| `batch start dates` | admissions |
-| `age requirement, if any` | admissions |
-| `transfer and withdrawal policy` | admissions FAQ |
-| `fee, refund and withdrawal policy` | disclaimer |
-| `data retention period` | disclaimer |
-| `policy last-updated date` | disclaimer |
-| `year established` | about |
-| `campus locations` | about |
+| `Google Maps embed URL` | contact |
+| `duration` | every programme page |
+| `training hours` | every programme page |
+| `eligibility` | every programme page (which of 10th / 12th / Graduate / Other) |
+| `next batch date` | programme pages, admissions |
+| `module outline` | reserved — the client's "What You Will Learn" block |
+| `legal / registration status` | about, disclaimer |
 | `faculty names and profiles` | about |
-| `registration or licence details` | about |
-| `approved student testimonials` | about |
+| `cancellation window` | reserved |
+| `transfer request period` | disclaimer |
+| `enquiry record retention period` | disclaimer |
+| `student academic record retention period` | disclaimer |
+| `policy effective date` / `policy last-updated date` / `policy version` | disclaimer |
 
-**Also to replace before launch:** `https://example.com/` in `sitemap.xml` and
+### Now supplied and live on the site
+
+Fee (₹43,999 total, ₹13,999 registration, instalment available) with full inclusion and
+exclusion lists · the four eligibility bands · age requirement · the ten enrolment
+documents and the false-documents warning · batch types · the four learning modes ·
+certificate wording and its caution · positioning and supporting lines · the
+programme-to-career statement · About Us, aim, audience and background copy · the
+seven-point training approach · established 2010 · founder Pareshnath Shutradhar · full
+campus address · office hours · admissions desk · fee policy · the eight-section refund
+policy · transfer policy · data-processing purposes and retention wording · the website
+disclaimer.
+
+### Fees — confirmed
+
+All 21 fees are client-confirmed (24 Sep 2026). Two bands:
+
+| Band | Total | First instalment | Programmes |
+|---|---|---|---|
+| Sector-specialist | ₹43,999 | ₹13,999 | AATC Aviation, MIRTC Metro & Rail, RIATC Railway, HITC Hospitality, TTMC Travel & Tourism |
+| Standard | ₹25,500 | ₹10,500 | The other 16, including PITC Pharmaceutical |
+
+Notes on how this is wired:
+
+- Each programme carries its own `fee: { total, first, confirmed }` in
+  `assets/data/programmes.js`. **That is the only place a fee is written.**
+- The headline range on admissions (₹25,500 – ₹43,999) and the 21-row fee table are
+  derived from that array at runtime, so they cannot drift from the programme pages.
+- There is deliberately **no** academy-wide fee figure in `AX_ACADEMY`; an earlier one was
+  removed because it would have been a second, competing source of truth.
+- The first instalment is stated everywhere as part of the total, not an additional
+  charge — this was an explicit client clarification.
+- The `confirmed` flag drives a "(provisional)" marker on the programme page. All 21 are
+  now `true`, so nothing renders. Keep the flag: if a programme is added with an unsettled
+  fee, set it to `false` and the marker returns automatically.
+
+Superseded along the way: an earlier ₹19,999 / ₹9,999 figure for the Pharmaceutical
+Division, and a provisional five-tier spread. Neither survives in the data.
+
+### Refund policy — resolved
+
+The contradiction is settled: fees remain **strictly non-refundable** under the
+eight-section policy, and where the Academy exercises its discretion to approve a refund,
+the approved amount is processed within **5–7 working days**. Both statements are now on
+the legal page, the second under a "Refund processing" heading.
+
+Also still to replace before launch: `https://example.com/` in `sitemap.xml` and
 `robots.txt`, and the `og:image` paths once the real social card exists.
 
 ---

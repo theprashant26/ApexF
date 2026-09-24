@@ -27,6 +27,7 @@ window.AX_PROGRAMMES = [
     number: 1,
     division: "Metro & Rail Division",
     code: "MIRTC",
+    fee: { total: "₹43,999", first: "₹13,999", confirmed: true },
     certificate: "Metro Industrial & Rail Technical Certificate",
     programme: "Diploma in Metro Rail Management",
     group: "Transport, Aviation & Logistics",
@@ -40,6 +41,7 @@ window.AX_PROGRAMMES = [
     number: 2,
     division: "Railway Division",
     code: "RIATC",
+    fee: { total: "₹43,999", first: "₹13,999", confirmed: true },
     certificate: "Railway Industrial & Training Certificate",
     programme: "Diploma in Railway Management",
     group: "Transport, Aviation & Logistics",
@@ -53,6 +55,7 @@ window.AX_PROGRAMMES = [
     number: 3,
     division: "Aviation Division",
     code: "AATC",
+    fee: { total: "₹43,999", first: "₹13,999", confirmed: true },
     certificate: "Airline & Aviation Training Certificate",
     programme: "Diploma in Aviation Management",
     group: "Transport, Aviation & Logistics",
@@ -66,6 +69,7 @@ window.AX_PROGRAMMES = [
     number: 4,
     division: "Hospitality Division",
     code: "HITC",
+    fee: { total: "₹43,999", first: "₹13,999", confirmed: true },
     certificate: "Hotel Industry Training Certificate",
     programme: "Diploma in Hotel Management",
     group: "Hospitality, Travel & Retail",
@@ -79,6 +83,7 @@ window.AX_PROGRAMMES = [
     number: 5,
     division: "Travel & Tourism Division",
     code: "TTMC",
+    fee: { total: "₹43,999", first: "₹13,999", confirmed: true },
     certificate: "Travel & Tourism Management Certificate",
     programme: "Diploma in Travel & Tourism Management",
     group: "Hospitality, Travel & Retail",
@@ -92,6 +97,7 @@ window.AX_PROGRAMMES = [
     number: 6,
     division: "Medical Division",
     code: "MITC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Medical Industry Training Certificate",
     programme: "Diploma in Medical Management",
     group: "Health & Pharma",
@@ -105,6 +111,7 @@ window.AX_PROGRAMMES = [
     number: 7,
     division: "Pharmaceutical Division",
     code: "PITC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Pharmaceutical Industry Training Certificate",
     programme: "Diploma in Pharmaceutical Management",
     group: "Health & Pharma",
@@ -118,6 +125,7 @@ window.AX_PROGRAMMES = [
     number: 8,
     division: "Electrical Division",
     code: "EITC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Electrical Industrial Training Certificate",
     programme: "Diploma in Electrical Management",
     group: "Business, Technical & Engineering",
@@ -131,6 +139,7 @@ window.AX_PROGRAMMES = [
     number: 9,
     division: "Security Division",
     code: "SITC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Security Industry Training Certificate",
     programme: "Diploma in Security Management",
     group: "Hospitality, Travel & Retail",
@@ -144,6 +153,7 @@ window.AX_PROGRAMMES = [
     number: 10,
     division: "Education Division",
     code: "TITC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Teaching Industry Training Certificate",
     programme: "Diploma in Education & Teaching Management",
     group: "Business, Technical & Engineering",
@@ -157,6 +167,7 @@ window.AX_PROGRAMMES = [
     number: 11,
     division: "Banking Division",
     code: "BITC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Banking Industry Training Certificate",
     programme: "Diploma in Banking Management",
     group: "Business, Technical & Engineering",
@@ -170,6 +181,7 @@ window.AX_PROGRAMMES = [
     number: 12,
     division: "Finance & Accounting Division",
     code: "FITC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Finance & Accounting Industry Training Certificate",
     programme: "Diploma in Finance & Accounting Management",
     group: "Business, Technical & Engineering",
@@ -183,6 +195,7 @@ window.AX_PROGRAMMES = [
     number: 13,
     division: "Professional Skill Development",
     code: "PSDC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Professional Skill Development Certificate",
     programme: "Diploma in Professional Skill Development",
     group: "Business, Technical & Engineering",
@@ -196,6 +209,7 @@ window.AX_PROGRAMMES = [
     number: 14,
     division: "Logistics Division",
     code: "LITC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Logistics Industry Training Certificate",
     programme: "Diploma in Logistics Management",
     group: "Transport, Aviation & Logistics",
@@ -209,6 +223,7 @@ window.AX_PROGRAMMES = [
     number: 15,
     division: "Healthcare Division",
     code: "HIMTC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Healthcare Industry Management Training Certificate",
     programme: "Diploma in Healthcare Management",
     group: "Health & Pharma",
@@ -222,6 +237,7 @@ window.AX_PROGRAMMES = [
     number: 16,
     division: "Manufacturing Division",
     code: "MIMC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Manufacturing Industry Management Certificate",
     programme: "Diploma in Manufacturing Management",
     group: "Business, Technical & Engineering",
@@ -235,6 +251,7 @@ window.AX_PROGRAMMES = [
     number: 17,
     division: "Driver Services Division",
     code: "DITC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Driver Industry Training Certificate",
     programme: "Diploma in Driver Management",
     group: "Transport, Aviation & Logistics",
@@ -248,6 +265,7 @@ window.AX_PROGRAMMES = [
     number: 18,
     division: "Retail Division",
     code: "RIMC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Retail Industry Management Certificate",
     programme: "Diploma in Retail Management",
     group: "Hospitality, Travel & Retail",
@@ -261,6 +279,7 @@ window.AX_PROGRAMMES = [
     number: 19,
     division: "IT & Technology Division",
     code: "ITITC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "IT Industry Technical Certificate",
     programme: "Diploma in IT Management",
     group: "Business, Technical & Engineering",
@@ -274,6 +293,7 @@ window.AX_PROGRAMMES = [
     number: 20,
     division: "Civil Engineering Division",
     code: "CETC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Civil Engineering Training Certificate",
     programme: "Diploma in Civil Management",
     group: "Business, Technical & Engineering",
@@ -287,6 +307,7 @@ window.AX_PROGRAMMES = [
     number: 21,
     division: "Electrical Engineering Division",
     code: "EETC",
+    fee: { total: "₹25,500", first: "₹10,500", confirmed: true },
     certificate: "Electrical Engineering Training Certificate",
     programme: "Diploma in Electrical Management",
     group: "Business, Technical & Engineering",
@@ -338,4 +359,178 @@ window.AX_FEATURES = [
 window.AX_COMPLIANCE = {
   policy: "Apex Professional Academy clearly distinguishes its own training certificates from government, university, statutory-board or professional-licensing qualifications. Any claim of affiliation, approval, accreditation or recognition is published only when supported by the applicable official authorisation or agreement.",
   roles: "Completion of a training programme does not automatically guarantee employment, appointment, government recruitment, professional registration or a particular salary."
+};
+
+/* ==========================================================================
+   ACADEMY FACTS — supplied by Apex Professional Academy.
+   Everything here is client-confirmed copy. Anything the client marked
+   "TO BE CONFIRMED" stays in AX.PH (assets/js/apex.js) as a visible chip
+   rather than being guessed at here.
+   ========================================================================== */
+window.AX_ACADEMY = {
+  name: "Apex Professional Academy",
+  institution: "Apex Institute of Multidisciplinary Professional Studies",
+  shortName: "APA / AIMPS",
+  nature: "Professional Skill Development & Career-Oriented Training Institute",
+  established: "2010",
+  founder: "Pareshnath Shutradhar",
+
+  /* Positioning, as worded by the client. */
+  positioning: "Industry-Oriented Training. Practical Skills. Career-Focused Learning.",
+  supportingLine: "Professional training programmes designed to build practical knowledge, workplace skills and career readiness.",
+  careerStatement: "Our programmes are designed around industry-relevant skills and career pathways, helping learners prepare for suitable professional roles and further career opportunities.",
+
+  address: {
+    lines: ["Apex Professional Academy", "Puncha Puruliya", "Behind Anupama Medical Store",
+            "Puncha", "West Bengal", "723151", "India"],
+    oneLine: "Puncha Puruliya, Behind Anupama Medical Store, Puncha, West Bengal 723151, India"
+  },
+  hours: { weekdays: "Monday – Saturday: 10:00 AM to 6:30 PM", sunday: "Sunday: Closed" },
+  admissionsDesk: "Admissions Department / Admissions Desk",
+
+  /* Fees. One published figure covers the whole register; see REQUIREMENTS.md
+     for the open question on whether registration sits inside the total. */
+  fee: {
+    /* Amounts are per-programme and live on each programme entry, so there is
+       no academy-wide total here that could drift out of step with them. */
+    instalment: "Available",
+    structureNote: "The first instalment is part of the total programme fee, not an additional charge. The balance is payable on the schedule agreed before enrolment.",
+    includes: [
+      "Academic/training sessions",
+      "Course study material, where applicable",
+      "Practical training, where applicable",
+      "Internal assessments",
+      "Course-related guidance",
+      "Student support",
+      "Course completion certificate, subject to applicable academic requirements"
+    ],
+    excludes: [
+      "Travel and transportation expenses",
+      "Accommodation",
+      "Food and personal expenses",
+      "Government/statutory fees, where applicable",
+      "Third-party examination or certification charges",
+      "Any other expense specifically excluded from the programme fee"
+    ],
+    note: "The exact inclusions and exclusions will be communicated before enrolment."
+  },
+
+  eligibilityOptions: [
+    ["10th Pass", "Applicable to programmes accepting candidates who have completed Class 10"],
+    ["12th Pass", "Applicable to programmes requiring completion of Class 12"],
+    ["Graduate", "Applicable to programmes requiring a bachelor’s degree"],
+    ["Other", "Where a programme has specific educational or technical requirements"]
+  ],
+
+  ageRequirement: "No general age restriction, unless otherwise specified for a particular programme. Where a specific programme, employer, regulatory authority or placement opportunity has an age requirement, the applicable requirement will be communicated separately.",
+
+  documents: [
+    "Recent passport-size photographs",
+    "Aadhaar Card or other valid identity proof",
+    "PAN Card, where applicable",
+    "Class 10 marksheet/certificate",
+    "Class 12 marksheet/certificate, where applicable",
+    "Graduation marksheet/degree certificate, where applicable",
+    "Previous qualification certificates, where applicable",
+    "Address proof, where required",
+    "Any programme-specific document",
+    "Any additional document required for verification"
+  ],
+  documentsWarning: "Students should submit genuine and valid documents. Submission of false, forged or misleading documents may result in cancellation of admission.",
+
+  batch: {
+    types: "Distance Learning / Regular Mode",
+    rolling: "For programmes operating on a rolling-admission basis, eligible students may enrol subject to seat availability and the published batch schedule. For programmes having fixed intakes, the applicable batch commencement date will be published on the respective programme page."
+  },
+
+  learningModes: [
+    "Classroom Training, where applicable",
+    "Online Training, where applicable",
+    "Hybrid/Blended Training, where applicable",
+    "Practical/Workshop Sessions, where applicable"
+  ],
+
+  certificate: {
+    description: "Upon successful completion of the prescribed training programme and fulfilment of the applicable academic requirements, eligible learners may be awarded a Course Completion Certificate by Apex Professional Academy. The certificate will identify the name of the programme completed and the applicable programme/course code.",
+    caution: "The certificate is not a government certificate, a government-approved certificate, a university degree, a statutory licence or an accredited qualification."
+  },
+
+  about: {
+    intro: "Apex Professional Academy is a professional training institution focused on skill development, practical learning and career-oriented education across multiple industry sectors.",
+    aim: "The Academy aims to provide structured training that combines foundational knowledge, practical exposure and professional development to help learners prepare for workplace and industry environments.",
+    audience: "Our programmes are designed for learners seeking to develop sector-specific knowledge and professional skills in areas such as Metro & Rail, Railway, Aviation, Hospitality, Travel & Tourism, Medical, Pharmaceutical, Electrical, Security, IT and other professional domains.",
+    background: "Apex Professional Academy was established with the objective of creating accessible, structured and career-oriented professional training opportunities for learners seeking industry-specific knowledge and practical skills. The Academy focuses on developing programmes that combine academic understanding with professional and practical learning, enabling students to build relevant skills for further education, employment preparation and career development."
+  },
+
+  approach: [
+    "Industry-oriented learning",
+    "Practical skill development",
+    "Professional communication",
+    "Workplace awareness",
+    "Structured assessments",
+    "Career guidance",
+    "Continuous learner support"
+  ],
+
+  /* Legal text, verbatim from the client. */
+  legal: {
+    feePolicy: [
+      "Programme fees must be paid according to the fee structure communicated by Apex Professional Academy at the time of enrolment.",
+      "Before completing enrolment, students should review the applicable programme fee, payment schedule, inclusions, exclusions and applicable terms.",
+      "A student should retain the official fee receipt/payment acknowledgement issued by the Academy."
+    ],
+    refundIntro: "All applicants are advised to carefully read this Refund Policy before enrolling in any programme at Apex Professional Academy. By enrolling, the applicant acknowledges and agrees to be legally bound by this policy.",
+    refundSections: [
+      ["1. Strictly non-refundable fees", [
+        "All fees paid to Apex Professional Academy, whether full or partial, are strictly non-refundable under any circumstances.",
+        "This policy applies in all situations, including but not limited to: failure to join the course after admission; voluntary withdrawal or discontinuation by the student; personal, medical, financial or any other reasons; dissatisfaction with the course or services; failure to secure job placement or employment."
+      ]],
+      ["2. No adjustment or transfer of fees", [
+        "Fees once paid shall not be adjusted or transferred under any circumstances, including transfer to another course, transfer to another batch, or transfer to another student or candidate."
+      ]],
+      ["3. Running batch / mid-session admission", [
+        "Candidates enrolling in an ongoing or running batch shall have no entitlement to any refund, regardless of the remaining course duration.",
+        "No claim for refund or adjustment shall be entertained on the basis of reduced course duration due to late admission."
+      ]],
+      ["4. Self study / distance learning courses", [
+        "Fees paid for self study or distance learning programmes are strictly non-refundable.",
+        "No refund shall be provided on the grounds of non-availability of classroom training, as such modes are self-driven by nature."
+      ]],
+      ["5. No refund in special circumstances", [
+        "No refund shall be granted under any circumstances, including but not limited to: changes in course structure or content; delay in examinations or certification; administrative or operational reasons; policy updates or modifications."
+      ]],
+      ["6. Institute rights", [
+        "Apex Professional Academy reserves the absolute right to reject any refund request, and to modify or update this Refund Policy at any time without prior notice."
+      ]],
+      ["7. Administrative authority", [
+        "Apex Professional Academy operates under the administrative framework and supervision of Apex Institute of Multidisciplinary Professional Studies, and all financial policies are governed accordingly."
+      ]],
+      ["8. Final declaration", [
+        "By enrolling in Apex Professional Academy, the student or applicant confirms that they have read, understood and agreed to this Refund Policy; that they acknowledge fees are non-refundable under all circumstances; and that they shall not raise any claim, dispute or legal objection regarding refund in the future."
+      ]]
+    ],
+    refundProcessing: "Where Apex Professional Academy exercises its discretion to approve a refund, the approved amount is processed within 5–7 working days.",
+    transferIntro: "Students may request a transfer from one programme to another, subject to programme availability and eligibility requirements. A transfer request must be submitted to the Admissions/Academic Department within the applicable period.",
+    transferFactors: [
+      "Availability of seats",
+      "Eligibility for the new programme",
+      "Difference in programme fees",
+      "Training already completed",
+      "Batch availability",
+      "Administrative requirements"
+    ],
+    transferFee: "If the new programme has a higher fee, the student may be required to pay the applicable difference. If the new programme has a lower fee, any adjustment or refund will be governed by the Academy’s applicable fee policy.",
+    dataPurposes: [
+      "Admission enquiries", "Application processing", "Student registration",
+      "Academic administration", "Communication", "Fee/payment administration",
+      "Certificate issuance", "Student support", "Legal and regulatory compliance"
+    ],
+    dataRetention: "Student and enquiry information will be retained only for as long as reasonably necessary for the purpose for which it was collected, institutional record-keeping, contractual requirements, dispute resolution, legal obligations and other legitimate purposes.",
+    disclaimer: [
+      "Apex Professional Academy provides professional training and skill-development programmes for educational and career-development purposes.",
+      "Unless specifically stated and supported by valid documentation, completion of an Academy programme should not be interpreted as a government job guarantee, university degree, statutory licence, government qualification, or guaranteed employment.",
+      "Employment, placement and career outcomes may depend on the learner’s qualification, skills, experience, employer requirements, selection processes and prevailing employment opportunities.",
+      "Where any third-party certification, examination, internship, placement or industry association is involved, the applicable terms and status will be disclosed separately."
+    ]
+  }
 };

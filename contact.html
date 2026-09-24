@@ -71,7 +71,8 @@
                 <span>
                   <span class="ax-contact-row__label">Phone</span>
                   <span class="ax-contact-row__value"><span class="ax-ph">{{PLACEHOLDER: primary phone number}}</span></span>
-                  <span class="ax-contact-row__value"><span class="ax-ph">{{PLACEHOLDER: secondary phone / WhatsApp number}}</span></span>
+                  <span class="ax-contact-row__value"><span class="ax-ph">{{PLACEHOLDER: WhatsApp number}}</span></span>
+                  <span class="ax-contact-row__value"><span class="ax-ph">{{PLACEHOLDER: secondary phone number}}</span></span>
                 </span>
               </div>
 
@@ -82,6 +83,7 @@
                 <span>
                   <span class="ax-contact-row__label">Email</span>
                   <span class="ax-contact-row__value"><span class="ax-ph">{{PLACEHOLDER: admissions email address}}</span></span>
+                  <span class="ax-contact-row__value"><span class="ax-ph">{{PLACEHOLDER: general enquiries email address}}</span></span>
                 </span>
               </div>
 
@@ -91,7 +93,7 @@
                 </span>
                 <span>
                   <span class="ax-contact-row__label">Campus</span>
-                  <span class="ax-contact-row__value"><span class="ax-ph">{{PLACEHOLDER: full campus address with city and PIN}}</span></span>
+                  <span class="ax-contact-row__value" data-ax-address></span>
                 </span>
               </div>
 
@@ -101,7 +103,18 @@
                 </span>
                 <span>
                   <span class="ax-contact-row__label">Office hours</span>
-                  <span class="ax-contact-row__value"><span class="ax-ph">{{PLACEHOLDER: office days and hours}}</span></span>
+                  <span class="ax-contact-row__value" data-ax-hours></span>
+                </span>
+              </div>
+
+              <div class="ax-contact-row">
+                <span class="ax-contact-row__ico">
+                  <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 9.6a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="1.3"/><path d="M3.4 15.4a5.9 5.9 0 0111.2 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                </span>
+                <span>
+                  <span class="ax-contact-row__label">Address enquiries to</span>
+                  <span class="ax-contact-row__value" data-ax-desk></span>
+                  <span class="ax-small">For eligibility, fees, batch schedules, learning modes, documentation and enrolment procedures.</span>
                 </span>
               </div>
             </div>
