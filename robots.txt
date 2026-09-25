@@ -1,5 +1,11 @@
 User-agent: *
 Allow: /
+
+# Portal and transactional pages: no value in search results
 Disallow: /404.html
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /payment.html
+Disallow: /payment-status.html
 
 Sitemap: https://example.com/sitemap.xml

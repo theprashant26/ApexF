@@ -85,10 +85,7 @@
         <div>
           <p class="ax-eyebrow" data-reveal>Before you apply</p>
           <h2 class="ax-h2 ax-h2--sm ax-mt-2" id="req-h" data-reveal="1">Eligibility and age</h2>
-          <p class="ax-body ax-mt-3" data-reveal="2">
-            Eligibility is programme-specific. The requirement that applies to a given
-            programme is shown on that programme&rsquo;s own page.
-          </p>
+          <p class="ax-body ax-mt-3" data-reveal="2" data-ax-eligibility-note></p>
           <div class="ax-table-wrap ax-mt-3" data-reveal="2" data-ax-eligibility></div>
           <p class="ax-body ax-body--sm ax-mt-3" data-reveal="2" data-ax-age></p>
         </div>
@@ -116,15 +113,15 @@
             <div class="ax-acc__item">
               <h3>
                 <button class="ax-acc__btn" type="button" aria-expanded="false" aria-controls="faq-2">
-                  Is training classroom-based or online?
+                  How is the training delivered?
                   <span class="ax-acc__icon" aria-hidden="true">+</span>
                 </button>
               </h3>
               <div class="ax-acc__panel" id="faq-2">
-                <div>Depending on the programme, training may be offered as classroom training,
-                online training, hybrid/blended training or practical/workshop sessions. Batches run
-                in Distance Learning or Regular Mode. The available mode is stated on each
-                programme page and confirmed during counselling.</div>
+                <div>All Apex programmes are delivered <b class="ax-gold">online</b>. There is no
+                classroom attendance requirement, so you can study from anywhere. Assignments and
+                assessments are completed remotely, and because there is no fixed intake you can
+                enrol at any time and begin with the next available session.</div>
               </div>
             </div>
 
@@ -183,12 +180,16 @@
                 </button>
               </h3>
               <div class="ax-acc__panel" id="faq-6">
-                <div>There are two fee bands. The Aviation, Metro &amp; Rail, Railway, Hospitality
-                and Travel &amp; Tourism programmes are <b class="ax-gold">&#8377;43,999</b> with a
-                first instalment of <b class="ax-gold">&#8377;13,999</b>. Every other programme is
-                <b class="ax-gold">&#8377;25,500</b> with a first instalment of
-                <b class="ax-gold">&#8377;10,500</b>. The first instalment is part of the total fee,
-                not a charge on top of it. See the fee table above for each programme.</div>
+                <div>It depends on the programme and the length you take. Every programme runs
+                at 3, 6 or 12 months. For the 3-month course, the Aviation, Metro &amp; Rail,
+                Railway, Hospitality and Travel &amp; Tourism programmes are
+                <b class="ax-gold">&#8377;43,999</b> (first instalment
+                <b class="ax-gold">&#8377;13,999</b>), Pharmaceutical is
+                <b class="ax-gold">&#8377;19,999</b> (first instalment
+                <b class="ax-gold">&#8377;9,999</b>), and the rest are
+                <b class="ax-gold">&#8377;25,500</b> (first instalment
+                <b class="ax-gold">&#8377;10,500</b>). The 6- and 12-month fees are in the table
+                above. The first instalment is part of the total fee, not a charge on top of it.</div>
               </div>
             </div>
 
@@ -231,7 +232,7 @@
         </div>
         <div class="ax-panel ax-panel--pad ax-spot" data-reveal="1">
           <p class="ax-stat__value ax-stat__value--word" data-ax-fee-reg></p>
-          <p class="ax-stat__label">First instalment</p>
+          <p class="ax-stat__label">First instalment, 3-month courses</p>
         </div>
         <div class="ax-panel ax-panel--pad ax-spot" data-reveal="2">
           <p class="ax-stat__value ax-stat__value--word" data-ax-fee-emi></p>
@@ -252,7 +253,10 @@
 
       <p class="ax-body ax-mt-4" data-ax-fee-structure></p>
 
-      <h3 class="ax-h4 ax-mt-5" data-reveal>Fee by programme</h3>
+      <h3 class="ax-h4 ax-mt-5" data-reveal>Programme lengths and awards</h3>
+      <div class="ax-table-wrap ax-mt-3" data-ax-durations data-reveal></div>
+
+      <h3 class="ax-h4 ax-mt-5" data-reveal>Fee by programme and length</h3>
       <div class="ax-table-wrap ax-mt-3" data-ax-fee-table data-reveal></div>
       <p class="ax-small ax-mt-3" data-ax-fee-note></p>
       <p class="ax-notice ax-mt-3">
@@ -289,16 +293,16 @@
           <p class="ax-body ax-mt-3"><strong class="ax-gold">Batch type:</strong>
             <span data-ax-batch-types></span></p>
           <p class="ax-body ax-mt-3" data-ax-batch-rolling></p>
-          <p class="ax-body ax-mt-3">Next batch:
-            <span class="ax-ph">{{PLACEHOLDER: next batch date}}</span></p>
+          <p class="ax-body ax-mt-3"><strong class="ax-gold">Next batch:</strong>
+            <span data-ax-batch-open></span></p>
         </div>
         <div class="ax-panel ax-panel--pad" data-reveal="1">
-          <p class="ax-eyebrow">Learning modes</p>
-          <h3 class="ax-h2 ax-h2--sm ax-mt-2">How training is delivered</h3>
-          <p class="ax-body ax-mt-3">Depending on the programme, training may be offered through:</p>
+          <p class="ax-eyebrow">Learning mode</p>
+          <h3 class="ax-h2 ax-h2--sm ax-mt-2">Delivered online</h3>
+          <p class="ax-body ax-mt-3" data-ax-mode-note></p>
           <ul class="ax-checklist ax-one-col ax-mt-3" data-ax-modes></ul>
           <p class="ax-small ax-mt-3">
-            The available learning mode is stated on each programme page.
+            Every programme in the register is delivered this way.
           </p>
         </div>
       </div>
@@ -359,24 +363,6 @@
                 <option value="">Select a programme</option>
               </select>
               <p class="ax-error" id="e-prog"></p>
-            </div>
-
-            <div class="ax-field">
-              <span class="ax-label" id="mode-label">Preferred learning mode</span>
-              <div class="ax-radio-row" role="radiogroup" aria-labelledby="mode-label">
-                <label class="ax-radio">
-                  <input type="radio" name="mode" value="classroom" checked>
-                  <span>Classroom</span>
-                </label>
-                <label class="ax-radio">
-                  <input type="radio" name="mode" value="online">
-                  <span>Online</span>
-                </label>
-                <label class="ax-radio">
-                  <input type="radio" name="mode" value="either">
-                  <span>Either</span>
-                </label>
-              </div>
             </div>
 
             <div class="ax-field">

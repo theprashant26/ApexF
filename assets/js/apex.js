@@ -60,12 +60,10 @@
     email: "{{PLACEHOLDER: admissions email address}}",
     emailGeneral: "{{PLACEHOLDER: general enquiries email address}}",
     formEndpoint: "{{PLACEHOLDER: form submission endpoint URL}}",
-    mapEmbed: "{{PLACEHOLDER: Google Maps embed URL}}",
+    authService: "{{PLACEHOLDER: authentication service}}",
+    paymentGateway: "{{PLACEHOLDER: payment gateway and merchant key}}",
+    uploadService: "{{PLACEHOLDER: document upload / storage service}}",
     social: "{{PLACEHOLDER: official profile URL}}",
-    duration: "{{PLACEHOLDER: duration}}",
-    trainingHours: "{{PLACEHOLDER: training hours}}",
-    eligibility: "{{PLACEHOLDER: eligibility}}",
-    nextBatch: "{{PLACEHOLDER: next batch date}}",
     registration: "{{PLACEHOLDER: legal / registration status}}",
     faculty: "{{PLACEHOLDER: faculty names and profiles}}",
     transferPeriod: "{{PLACEHOLDER: transfer request period}}",
@@ -205,7 +203,8 @@
       '<div class="ax-header__inner">' +
         brandHTML() +
         '<nav class="ax-nav" aria-label="Primary">' + links + "</nav>" +
-        '<a class="ax-btn ax-btn--gold ax-btn--sm ax-header__cta" href="admissions.html#enquiry">Apply now</a>' +
+        '<a class="ax-nav__link ax-header__signin" href="login.html">Sign in</a>' +
+        '<a class="ax-btn ax-btn--gold ax-btn--sm ax-header__cta" href="apply.html">Apply now</a>' +
         '<button class="ax-burger" type="button" id="ax-burger" aria-expanded="false" ' +
           'aria-controls="ax-drawer" aria-label="Open menu"><span></span></button>' +
       "</div>" + megaHTML() + "</header>";
@@ -238,7 +237,8 @@
           groupBlocks +
           simple.slice(2).join("") +
         "</nav>" +
-        '<a class="ax-btn ax-btn--gold ax-btn--block ax-mt-4" href="admissions.html#enquiry">Apply now</a>' +
+        '<a class="ax-btn ax-btn--gold ax-btn--block ax-mt-4" href="apply.html">Apply now</a>' +
+        '<a class="ax-btn ax-btn--glass ax-btn--block ax-mt-2" href="login.html">Student sign in</a>' +
       "</div>";
   }
 
@@ -256,7 +256,10 @@
       ["Admissions", "admissions.html"],
       ["Gallery", "gallery.html"],
       ["Contact", "contact.html"],
-      ["Institute policy", "disclaimer.html"]
+      ["Institute policy", "disclaimer.html"],
+      ["Admission form", "apply.html"],
+      ["Student sign in", "login.html"],
+      ["Fee payment", "payment.html"]
     ].map(function (l) {
       return '<li><a href="' + l[1] + '">' + AX.esc(l[0]) + "</a></li>";
     }).join("");

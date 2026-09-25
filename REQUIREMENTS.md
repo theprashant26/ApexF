@@ -1,20 +1,134 @@
-# Apex Professional Academy — project requirements & handover
+# Apex Professional Academy — requirements & handover
 
-**The single reference file for this project.** Design system, content rules, image
-schedule, placeholder register, and how to run and extend the site. Nothing else in the
-repo is documentation.
+The single reference file for this project. **Section 1 is what is still needed**;
+everything after it is reference for building and maintaining the site.
 
-- **Client:** Apex Professional Academy, operating under Apex Institute of
-  Multidisciplinary Professional Studies (short code **AIMPS**).
-- **What the site is:** a marketing and admissions site for 21 sector-focused
-  diploma/certificate programmes.
-- **The one idea:** every programme maps to **named career-oriented roles**, and the site
-  is built around that mapping in both directions — programme → roles, and role →
-  programmes.
+- **Client:** Apex Professional Academy, under Apex Institute of Multidisciplinary
+  Professional Studies (APA / AIMPS).
+- **The one idea:** every programme maps to named **career-oriented roles**, and the site
+  works in both directions — programme → roles, and role → programmes.
+- **Status:** 15 pages, 21 divisions, 82 career-oriented roles, all delivered online.
+  80/80 functional checks and 210/210 responsive combinations passing, no console
+  errors. Not yet live.
 
 ---
 
-## 1. How to run it
+## 1. Outstanding
+
+All front-end content is complete and approved. **18 placeholder tokens remain**, and
+every one of them is waiting on the backend phase or the graphics team rather than on a
+content decision. Each renders as a visible gold dashed chip on the page, so nothing can
+ship unnoticed.
+
+### 1.1 From the client — contact details
+
+Being handled as part of the backend work, but the values still have to come from the
+Academy.
+
+| Needed | Appears on |
+|---|---|
+| Primary phone number | contact, admissions, apply |
+| WhatsApp number | contact |
+| Secondary phone number | contact |
+| Admissions email address | contact, disclaimer |
+| General enquiries email address | contact |
+
+### 1.2 From the client — legal
+
+Also flagged for the backend work; the values are the Academy’s to set.
+
+| Needed | Appears on |
+|---|---|
+| Legal / registration status | about, disclaimer |
+| Transfer request period | disclaimer |
+| Enquiry record retention period | disclaimer |
+| Student academic record retention period | disclaimer |
+| Policy effective date | disclaimer |
+| Policy last-updated date | disclaimer |
+| Policy version | disclaimer |
+
+The policy page should not go live with the dates unfilled.
+
+### 1.3 Deferred to the backend phase
+
+Confirmed as not blocking the front end; values still come from the Academy.
+
+| Needed | Appears on |
+|---|---|
+| Faculty names, designations, qualifications and profiles | about |
+| Official social profile URLs ×4 | footer, every page |
+
+### 1.4 Settled — do not re-ask the client
+
+Training hours (120 / 240 / 480 by length) · eligibility (Intermediate, Class 12 or above,
+uniform across the register) · admission open all year with no fixed intakes · **all
+training delivered online**, no classroom attendance · all 63 fee figures · EMI on request
+for the 6- and 12-month courses · the refund, transfer and privacy policies · address,
+office hours, established 2010, founder · the full division list.
+
+**Division list — complete.** Three renames kept their code, training areas and roles;
+three were withdrawn; three are new:
+
+| Change | Divisions |
+|---|---|
+| Renamed | IT & Technology → **Information Technology** (ITITC) · Civil Engineering → **Construction** (CETC) · Finance & Accounting → **Finance** (FITC) |
+| Withdrawn | Healthcare (HIMTC) · Driver Services (DITC) · Electrical Engineering (EETC) |
+| New | **Infrastructure** (IITC) · **Agriculture** (AITC) · **Insurance** (INITC) |
+
+The register holds 21 divisions and the role index stands at **82 roles**. Withdrawn
+divisions' old URLs show a "programme not found" page.
+
+**Provenance worth keeping.** For the three new divisions, the certificate codes and the
+curriculum — training areas and career-oriented roles — were **drafted by the developer,
+not supplied by the Academy, and then reviewed and approved by the client.** They follow
+the pattern of the other 18 and reuse existing role names where the work genuinely
+overlaps, so the role finder cross-links correctly (Documentation Executive now spans 4
+programmes, Customer Service Executive 6). If anyone later asks where Agriculture's
+syllabus came from, this is the answer.
+
+**One loose end from going online-only:** the gallery still has a "Classrooms" filter with
+classroom captions, and the About page references the campus. That is arguably fine — the
+Academy has a physical office and Admissions Desk — but if it should read as fully remote,
+those captions and that filter need rewording once the real photography lands.
+
+### 1.5 From the graphics team
+
+19 image slots still show generated placeholders — full spec in section 7. Plus the logo
+files, which is the one place the dark design is currently compromised: the header shows
+the supplied JPEG on a white chip because it has no transparency.
+
+| Asset | Size | Format |
+|---|---|---|
+| Transparent logo | 1200 × 1200 | PNG with alpha |
+| Vector master | — | SVG |
+| Horizontal lockup | 1600 × 400 | PNG + SVG |
+| **Reversed lockup** (white/gold on navy) | 1600 × 400 | PNG + SVG |
+| Monogram favicon | 512 × 512 | PNG |
+
+### 1.6 Backend and hosting — your side, not the client's
+
+| Needed | Unblocks |
+|---|---|
+| Form submission endpoint | enquiry, contact and admission forms |
+| Authentication service | login, register |
+| Payment gateway + merchant key | payment, payment-status |
+| Document upload / storage service | document upload on the admission form |
+| Live domain | replaces `https://example.com/` in `sitemap.xml` and `robots.txt` |
+
+Section 8 has the wiring instructions for each.
+
+### 1.7 QA not yet performed
+
+- **Lighthouse.** Targets: Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95,
+  SEO ≥ 95. Run against a served URL, not `file://`, or the numbers are meaningless.
+- **Real iOS Safari and Android Chrome.** All automated testing is Chromium.
+  `backdrop-filter`, `100svh` and `text-wrap:balance` are the most likely to differ.
+- **The Google Map** renders blank in headless Chromium (no GPU). The embed is confirmed
+  working by HTTP check, but open `contact.html` in a normal browser to see it paint.
+
+---
+
+## 2. How to run it
 
 It is a static site with no build step.
 
@@ -33,45 +147,52 @@ of a local `.json` file is blocked by the browser's `file://` origin rules.
 
 ---
 
-## 2. File structure
+## 3. File structure
 
 ```
 ApexF/
 ├─ index.html            Home
 ├─ about.html            About + training approach
-├─ programmes.html       All 21, searchable/filterable + static A–Z index
+├─ programmes.html       All 21, searchable + static A–Z index
 ├─ programme.html        Detail template, driven by ?code=
 ├─ careers.html          Role finder (reverse index)
-├─ admissions.html       Process, eligibility, FAQ, enquiry form
+├─ admissions.html       Process, fees, documents, FAQ, enquiry form
 ├─ gallery.html          Filterable mosaic + lightbox
-├─ contact.html          Contact details, map slot, message form
-├─ disclaimer.html       Institute policy, terms, privacy
+├─ contact.html          Contact details, live map, message form
+├─ disclaimer.html       Institute policy, refund policy, terms, privacy
 ├─ 404.html
+├─ apply.html            Admission form, live fee summary
+├─ login.html            Student portal sign in
+├─ register.html         Student account creation
+├─ payment.html          Fee payment, gateway handoff
+├─ payment-status.html   Gateway return (?status=success|failed|pending)
 ├─ REQUIREMENTS.md       ← this file
-├─ robots.txt
-├─ sitemap.xml           8 pages + 21 programme URLs
+├─ robots.txt            transactional pages disallowed
+├─ sitemap.xml           30 URLs: 9 pages + 21 programmes
 └─ assets/
-   ├─ css/apex.css       The entire design system, one file, 18 numbered sections
+   ├─ css/apex.css       The whole design system, one file, 19 numbered sections
    ├─ js/
-   │  ├─ apex.js         Core: data access, header/footer, nav, motion, UI primitives
+   │  ├─ apex.js         Core: data, header/footer, nav, motion, UI primitives
    │  └─ pages.js        Page behaviour, dispatched by <body data-page>
-   ├─ data/programmes.js SINGLE SOURCE OF TRUTH — 21 programmes + groups + compliance copy
+   ├─ data/programmes.js SINGLE SOURCE OF TRUTH — programmes, fees, academy, legal copy
    ├─ brand/apexlogo.jpeg
    └─ img/               19 generated SVG placeholders
 ```
 
 **Load order matters:** GSAP → `programmes.js` → `pages.js` → `apex.js`. `pages.js` only
-defines `window.AX_PAGE`; `apex.js` mounts the chrome and then calls it.
+defines `window.AX_PAGE`; `apex.js` mounts the chrome then calls it. Inside `AX_PAGE`,
+shared controls are populated *before* the page module runs, because the apply and
+payment modules read the programme `<select>` to preselect from a `?code=` link.
 
 ---
 
-## 3. Design system — "Midnight Luxe"
+## 4. Design system — "Midnight Luxe"
 
 Dark-first throughout: one continuous midnight-navy room with fixed gold and azure light
 blooms behind every page, rather than alternating light/dark chapters. Glass panels catch
 a gold bevel along their top edge, and a gold bloom tracks the pointer across them.
 
-### Colour tokens (`assets/css/apex.css`, section 1)
+### Colour tokens (`assets/css/apex.css`)
 
 | Token | Value | Use |
 |---|---|---|
@@ -127,7 +248,20 @@ grey-shadowed cards, and the glassmorphism-on-a-gradient-blob hero.
 
 ---
 
-## 4. Motion
+### Two CSS ordering traps
+
+Both of these have already caused a visible bug once:
+
+1. **Section 19 is appended after the responsive section.** A touch override written into
+   the `@media (max-width:1024px)` block in section 18 is overruled by a base rule in
+   section 19. Put the media query next to the rule it overrides.
+2. **Never lift content with a `body > *` rule.** That selector outranks the single-class
+   rules on `.ax-header`, `.ax-drawer` and `.ax-skip` and drops them out of fixed
+   positioning. The atmosphere sits at `z-index:-1` instead.
+
+---
+
+## 5. Motion
 
 | # | What | How |
 |---|---|---|
@@ -146,7 +280,7 @@ missing trigger element, so no page throws because it lacks a given block.
 
 ---
 
-## 5. Content rules
+## 6. Content rules
 
 ### Compliance copy — mandatory, unaltered
 
@@ -182,17 +316,23 @@ Plain, confident, specific. Sentence case. Active voice. No *world-class*, *unma
 
 Accreditation, placement rates, fees, batch sizes, year established, faculty, testimonials
 and partner companies are **not** on this site. Anything unknown is a `{{PLACEHOLDER}}`
-token (section 7).
+token, listed in section 1.
 
 ---
 
-## 6. Image schedule — what to send the client
+### Payments — a standing constraint
 
-All 19 slots currently render a generated SVG placeholder from `assets/img/`. Each
-placeholder prints its own slot name and required pixel size, so a screenshot of any page
-doubles as a brief.
+**No card fields anywhere on this site.** Collecting card numbers in our own form pulls
+the Academy into PCI-DSS scope and real liability. `payment.html` collects payer identity
+only and hands off to a gateway, which takes card, UPI and net-banking details on its own
+secure page. When wiring the gateway, integrate its checkout — **do not add card fields.**
 
-**Rules for the real photography**
+---
+
+## 7. Image schedule
+
+19 slots render a generated SVG placeholder from `assets/img/`. Each placeholder prints
+its own slot name and required pixel size, so a screenshot of any page doubles as a brief.
 
 - Every `<img>` already has explicit `width`/`height` and a descriptive `alt`. Keep them.
 - Hero images are `fetchpriority="high"`; everything below the fold is `loading="lazy"`.
@@ -228,99 +368,11 @@ faculty portraits (800 × 1000, 4:5). The Midnight Luxe direction uses light and
 gradient in those places rather than photography; faculty portraits go in once
 names are confirmed — see the `faculty names and profiles` placeholder.
 
-### Logo files still needed from the client
-
-The supplied `assets/brand/apexlogo.jpeg` is a JPEG on a near-white background, which is
-why the header shows it on a white chip. Please supply:
-
-| Asset | Size | Format | Note |
-|---|---|---|---|
-| Transparent logo | 1200 × 1200 | PNG | alpha background |
-| Vector master | — | SVG | for crisp scaling |
-| Horizontal lockup | 1600 × 400 | PNG + SVG | for the header |
-| Reversed lockup | 1600 × 400 | PNG + SVG | white/gold on navy, for this dark site |
-| Monogram favicon | 512 × 512 | PNG | the "A" alone |
-
----
-
-## 7. Placeholder register
-
-The client supplied a content pack on 24 Sep 2026. Everything they confirmed now lives in
-`AX_ACADEMY` (`assets/data/programmes.js`); what follows is only what is **still open**.
-Each renders as a visible dashed gold chip on the page, so nothing can ship unnoticed.
-
-### Still outstanding
-
-| Token | Where it appears |
-|---|---|
-| `primary phone number` | contact, admissions |
-| `WhatsApp number` | contact |
-| `secondary phone number` | contact |
-| `admissions email address` | contact, disclaimer |
-| `general enquiries email address` | contact |
-| `official profile URL` | footer, ×4 networks |
-| `form submission endpoint URL` | admissions, contact |
-| `Google Maps embed URL` | contact |
-| `duration` | every programme page |
-| `training hours` | every programme page |
-| `eligibility` | every programme page (which of 10th / 12th / Graduate / Other) |
-| `next batch date` | programme pages, admissions |
-| `module outline` | reserved — the client's "What You Will Learn" block |
-| `legal / registration status` | about, disclaimer |
-| `faculty names and profiles` | about |
-| `cancellation window` | reserved |
-| `transfer request period` | disclaimer |
-| `enquiry record retention period` | disclaimer |
-| `student academic record retention period` | disclaimer |
-| `policy effective date` / `policy last-updated date` / `policy version` | disclaimer |
-
-### Now supplied and live on the site
-
-Fee (₹43,999 total, ₹13,999 registration, instalment available) with full inclusion and
-exclusion lists · the four eligibility bands · age requirement · the ten enrolment
-documents and the false-documents warning · batch types · the four learning modes ·
-certificate wording and its caution · positioning and supporting lines · the
-programme-to-career statement · About Us, aim, audience and background copy · the
-seven-point training approach · established 2010 · founder Pareshnath Shutradhar · full
-campus address · office hours · admissions desk · fee policy · the eight-section refund
-policy · transfer policy · data-processing purposes and retention wording · the website
-disclaimer.
-
-### Fees — confirmed
-
-All 21 fees are client-confirmed (24 Sep 2026). Two bands:
-
-| Band | Total | First instalment | Programmes |
-|---|---|---|---|
-| Sector-specialist | ₹43,999 | ₹13,999 | AATC Aviation, MIRTC Metro & Rail, RIATC Railway, HITC Hospitality, TTMC Travel & Tourism |
-| Standard | ₹25,500 | ₹10,500 | The other 16, including PITC Pharmaceutical |
-
-Notes on how this is wired:
-
-- Each programme carries its own `fee: { total, first, confirmed }` in
-  `assets/data/programmes.js`. **That is the only place a fee is written.**
-- The headline range on admissions (₹25,500 – ₹43,999) and the 21-row fee table are
-  derived from that array at runtime, so they cannot drift from the programme pages.
-- There is deliberately **no** academy-wide fee figure in `AX_ACADEMY`; an earlier one was
-  removed because it would have been a second, competing source of truth.
-- The first instalment is stated everywhere as part of the total, not an additional
-  charge — this was an explicit client clarification.
-- The `confirmed` flag drives a "(provisional)" marker on the programme page. All 21 are
-  now `true`, so nothing renders. Keep the flag: if a programme is added with an unsettled
-  fee, set it to `false` and the marker returns automatically.
-
-Superseded along the way: an earlier ₹19,999 / ₹9,999 figure for the Pharmaceutical
-Division, and a provisional five-tier spread. Neither survives in the data.
-
-### Refund policy — resolved
-
-The contradiction is settled: fees remain **strictly non-refundable** under the
-eight-section policy, and where the Academy exercises its discretion to approve a refund,
-the approved amount is processed within **5–7 working days**. Both statements are now on
-the legal page, the second under a "Refund processing" heading.
-
-Also still to replace before launch: `https://example.com/` in `sitemap.xml` and
-`robots.txt`, and the `og:image` paths once the real social card exists.
+Four slots the layout does not currently use, kept in case they are wanted later: a
+programme-detail banner (1920 × 720), a career-pathways background (2400 × 1400), a
+closing-CTA background (2400 × 900) and faculty portraits (800 × 1000). The design uses
+light and gradient in those places instead; faculty portraits go in once names are
+confirmed.
 
 ---
 
@@ -362,117 +414,60 @@ Set `AX.PH.formEndpoint` in `apex.js` to a real URL, then replace the simulated 
 `initForms()` (`pages.js`) with a `fetch(endpoint, {method:"POST", body:new FormData(form)})`.
 Validation, error display, the loading state and the success panel already work.
 
+### Change a fee
+
+Edit the `fees` array on that programme in `assets/data/programmes.js`. Nothing else —
+the admissions range, the 21 × 3 matrix and the programme page all derive from it. There
+is deliberately **no** academy-wide fee figure; an earlier one was removed because it was
+a second source of truth waiting to drift. Programme lengths and award titles live once
+in `AX_ACADEMY.durations`.
+
+### Wire up auth, payment and uploads
+
+- **Auth** — replace the simulated submit on `login.html` / `register.html`, and swap the
+  forgot-password toast in `initAuth()` for the real flow.
+- **Payment** — in `initPayment()`, replace the submit with the gateway's checkout call,
+  passing the amount already computed in the summary. Point the gateway's return URL at
+  `payment-status.html?status=…&ref=…`; that page already renders all three outcomes.
+- **Uploads** — the document checklist on `apply.html` is rendered from
+  `AX_ACADEMY.documents`; attach the upload widget to those rows.
+
 ---
 
-## 9. Accessibility & QA checklist
+## 9. Accessibility & QA — current state
+
+Verified by an 80-check functional suite and a 210-combination responsive sweep
+(15 pages × 14 viewports from 320px to 1920px, including phone landscape and four tablet
+sizes). Both run clean, with no console errors and no failed requests.
 
 | Item | State |
 |---|---|
 | One `<h1>` per page, correct heading order | ✅ |
-| Landmarks: `header`, `nav`, `main`, `footer`, labelled sections | ✅ |
+| Landmarks and labelled sections | ✅ |
 | Skip-to-content link on every page | ✅ |
-| Keyboard: mega-menu opens/closes, Escape returns focus to the trigger | ✅ |
-| Keyboard: drawer traps focus, Escape closes, focus restored | ✅ |
-| Keyboard: lightbox traps focus, arrows navigate, Escape closes, focus restored | ✅ |
-| Lightbox touch swipe | ✅ |
-| Focus ring visible on every surface (2px `--ax-gold-2`, 3px offset) | ✅ |
-| `aria-pressed` on filter pills, view toggle and role buttons | ✅ |
-| `aria-expanded` + `aria-controls` on accordion and mega-menu | ✅ |
-| Form errors: `aria-invalid` + `aria-describedby`, inline message, focus moves to first bad field | ✅ |
+| Mega-menu: opens, Escape closes, focus returns to trigger | ✅ |
+| Drawer: focus trapped, Escape closes, focus restored | ✅ |
+| Lightbox: focus trapped, arrows, Escape, focus restored, touch swipe | ✅ |
+| Focus ring visible on every surface | ✅ |
+| `aria-pressed` / `aria-expanded` / `aria-controls` on all toggles | ✅ |
+| Form errors: `aria-invalid` + `aria-describedby`, focus to first bad field | ✅ |
+| Fields validate on blur only once touched, or after first submit | ✅ |
 | Live regions on result counts and form status | ✅ |
-| Touch targets ≥ 44px | ✅ |
+| Touch targets ≥ 46px; text links ≥ 24px | ✅ |
+| No text under 12px | ✅ |
+| No horizontal overflow and no clipped content, at any viewport | ✅ |
 | `prefers-reduced-motion` fully honoured | ✅ |
-| Works with JavaScript disabled for reading (chrome is JS-mounted; the A–Z index and all page copy are static) | ⚠️ partial — see note |
-| No horizontal overflow, all 10 pages × 14 viewports | ✅ measured, see below |
-| Contrast — `--ax-text` on `--ax-void` | ✅ ≈ 17:1 |
-| Contrast — `--ax-muted` on `--ax-void` | ✅ ≈ 8.4:1 |
-| Contrast — `--ax-gold-2` on `--ax-void` | ✅ ≈ 9.6:1 |
-| Contrast — `--ax-gold` on `--ax-void` | ✅ ≈ 6.2:1 |
-| Contrast — `#100A02` on the gold button gradient | ✅ ≈ 9:1 |
-| Contrast — `--ax-dim` on `--ax-void` | ⚠️ ≈ 4.5:1 — meta text only, never body copy |
+| Contrast: text 17:1 · muted 8.4:1 · gold-2 9.6:1 · gold 6.2:1 · gold button 9:1 | ✅ |
+| Contrast: `--ax-dim` ≈ 4.5:1 | ⚠️ meta text only, never body copy |
+| In-sentence links on `disclaimer.html` are 20px tall | ⚠️ WCAG 2.5.8 exempts targets inside a block of text |
+| Readable with JavaScript disabled | ⚠️ partial — see below |
 
-**Note on the JS-disabled case.** The header and footer are mounted by `apex.js` so that
-navigation is generated from the data and can never drift out of sync with the 21
-programmes. With scripting off, page content, the static A–Z programme index and
-`sitemap.xml` keep every URL reachable, but the nav chrome and the `?code=` detail pages do
-not render. If a fully no-JS experience becomes a requirement, the fix is to pre-render the
-chrome into each page at build time.
-
-### Responsive QA — 10 pages × 14 viewports
-
-Every page was measured at every breakpoint (140 combinations), not sampled:
-
-| Class | Widths tested |
-|---|---|
-| Phones | 320, 360, 375, 390, 414, 430 |
-| Phone landscape | 844 × 390 |
-| Tablets | 768, 834, 1024, 1180 |
-| Laptop / desktop | 1280, 1440, 1920 |
-
-Each combination was checked for: horizontal document overflow, any element
-extending past the viewport, any element clipping its own content, touch-target
-size, and text below 12px.
-
-**Result: 0 horizontal overflow, 0 clipped content, 0 undersized touch targets,
-0 text under 12px.** Six defects were found and fixed in this pass:
-
-1. Long button labels (`Explore the programmes`) were clipped by `white-space:nowrap`
-   inside a 280px column at 320px — buttons now wrap below 1024px.
-2. The search field's fixed `min-width:240px` overflowed its panel at 320px — now
-   `min(240px,100%)`.
-3. The card/register view-toggle buttons were 37px tall — now 44px on touch widths.
-4. Filter pills dropped to 40px under the 560px breakpoint — now 44px.
-5. Role chips were 43px — now 44px.
-6. Twelve micro-labels sat between 9.9px and 11.8px (the header's
-   "PROFESSIONAL ACADEMY" line was the worst at 9.9px). All raised to a 12px floor;
-   footer and drawer links given a 24px minimum target.
-
-One finding is deliberately left: the `contact page` link inside a sentence on
-`disclaimer.html` is 20px tall. WCAG 2.5.8 explicitly exempts targets embedded in a
-block of text, and enlarging it would break the line it sits in.
-
-**Still not covered by this pass:** real iOS Safari and Android Chrome (all of the
-above is Chromium), and visual sign-off at every breakpoint — layout was verified
-programmatically plus spot-checked by screenshot at 320, 390, 768 and 1440.
-
-### What was actually tested, and how
-
-An 80-check browser audit was run against a served build (headless Chromium via
-Playwright) covering every page. **80 passed, 0 failed, with no JavaScript errors and no
-failed requests.** It verifies:
-
-- **Rendering from data** — 21 cards on the listing, 9 on the home register, 4 sector
-  tiles, 6 pathway rows, 9 feature items, 21 marquee names, 21 mega-menu entries,
-  exactly 3 rising diagonals on the home page.
-- **Role index correctness** — all 83 roles listed, and every shared role resolves to the
-  right programmes: Customer Service Executive → 5, Ticketing Executive → 3, Passenger
-  Service Executive → 3, Technical Support Assistant → 3, Inventory Executive → 2,
-  Documentation Executive → 2, Front Office Executive → 2. Deep links (`?role=`) open the
-  right panel.
-- **Search and filter** — free text, certificate code, group pills, card/register toggle,
-  live count, URL state, designed empty state, and the view choice surviving a reload.
-- **Programme detail** — `?code=AATC` rewrites the title, renders 8 training areas and
-  5 role chips, injects `Course` JSON-LD, shows 3 related programmes and the non-guarantee
-  notice; an unknown code degrades to the empty state rather than a blank page.
-- **Forms** — empty submit blocked with 5 inline errors and `aria-invalid`, a malformed
-  email rejected with a specific message, a valid submit reaching the success state, and
-  `?code=HITC` preselecting the programme.
-- **Interaction** — mega-menu opens and Escape closes it with focus returned to the
-  trigger, the lightbox opens and Escape closes it, the accordion toggles, the gallery
-  filter narrows to 3 campus tiles, and the mobile drawer opens and closes on Escape.
-- **Layout** — no horizontal overflow on any of index/programmes/careers/admissions at
-  320, 375, 390, 768, 1024, 1280 and 1920 px.
-
-Four defects were found and fixed during this pass, all of which broke real pages:
-a `body > *` rule whose specificity knocked the header, drawer and skip link out of
-`position:fixed` (the hidden drawer then pushed `<main>` off-screen); the page script
-running after the reveal observer and the marquee, leaving injected content invisible and
-the marquee empty; hover-then-click closing the mega-menu instead of opening it; and a
-310px minimum grid track overflowing a 320px screen.
-
-**Not yet run:** Lighthouse. Targets are Performance ≥ 90, Accessibility ≥ 95, Best
-Practices ≥ 95, SEO ≥ 95 on both desktop and mobile. Run it against a served URL
-(`python -m http.server`), not `file://`, or the numbers will be meaningless.
+**Note on the JS-disabled case.** Header and footer are mounted by `apex.js` so that
+navigation is generated from the data and can never drift from the programme list. With
+scripting off, page content, the static A–Z index and `sitemap.xml` keep every URL
+reachable, but the nav chrome and the `?code=` detail pages do not render. If a full
+no-JS experience becomes a requirement, pre-render the chrome into each page at build
+time.
 
 ---
 

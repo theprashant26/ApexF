@@ -18,32 +18,63 @@
      as visible placeholder chips rather than being guessed at. */
   function detailsBlock(p) {
     var AX = window.AX, a = AX.academy || {}, fee = a.fee || {};
-    var pf = p.fee || {};
-    var rows = [
+    var durations = a.durations || [];
+    var fees = p.fees || [];
+
+    function feeFor(months) {
+      for (var i = 0; i < fees.length; i++) if (fees[i].months === months) return fees[i];
+      return {};
+    }
+
+    /* One row per length: what it is called, what it awards, what it costs. */
+    var tierRows = durations.map(function (d) {
+      var f = feeFor(d.months);
+      return "<tr>" +
+        '<th scope="row">' + AX.esc(d.label) + "<br>" +
+          '<span class="ax-small">' + AX.esc(d.category) + "</span></th>" +
+        '<td data-th="Training hours">' + AX.esc(d.hours || "") + "</td>" +
+        '<td data-th="Award">' + AX.esc(d.award) + "</td>" +
+        '<td data-th="Total fee"><b class="ax-gold">' + AX.esc(f.total || "") + "</b></td>" +
+        '<td data-th="First instalment">' +
+          (f.first ? AX.esc(f.first)
+                   : '<span class="ax-gold">' + AX.esc(fee.emiOnRequest || "EMI on request") + "</span>") +
+        "</td>" +
+      "</tr>";
+    }).join("");
+
+    var specRows = [
       ["Programme code", '<span class="ax-code">' + AX.esc(p.code) + "</span>"],
-      ["Duration", AX.ph("duration")],
-      ["Training hours", AX.ph("trainingHours")],
-      ["Eligibility", AX.ph("eligibility")],
+      ["Division certificate", AX.esc(p.certificate)],
+      ["Eligibility", AX.esc(a.eligibility || "")],
       ["Age requirement", "No general age restriction, unless specified for this programme"],
       ["Learning mode", AX.esc(a.batch ? a.batch.types : "")],
-      ["Programme fee", '<b class="ax-gold">' + AX.esc(pf.total || "") + "</b>" +
-        (pf.confirmed ? "" : ' <span class="ax-small">(provisional)</span>')],
-      ["First instalment", AX.esc(pf.first || "") +
-        ' <span class="ax-small">— part of the total, not an extra charge</span>'],
       ["Instalment facility", AX.esc(fee.instalment || "")],
-      ["Next batch", AX.ph("nextBatch")],
-      ["Certificate", AX.esc(p.certificate)]
-    ];
-    var body = rows.map(function (r) {
+      ["Admission", AX.esc(a.batch ? a.batch.open : "") +
+        ' <span class="ax-small">— admission is open all year</span>']
+    ].map(function (r) {
       return '<tr><th scope="row">' + AX.esc(r[0]) + "</th><td>" + r[1] + "</td></tr>";
     }).join("");
 
-    return '<h2 class="ax-h2 ax-h2--sm ax-mt-6" data-reveal>Programme details</h2>' +
+    return '<h2 class="ax-h2 ax-h2--sm ax-mt-6" data-reveal>Choose your programme length</h2>' +
+      '<p class="ax-body ax-mt-2" data-reveal>This programme runs at three lengths. The award ' +
+        "you receive depends on the length you take.</p>" +
       '<div class="ax-table-wrap ax-mt-3" data-reveal>' +
-        '<table class="ax-table ax-table--spec"><tbody>' + body + "</tbody></table>" +
+        '<table class="ax-table ax-table--spec"><thead><tr>' +
+          '<th scope="col">Length</th><th scope="col">Training hours</th>' +
+          '<th scope="col">Award</th>' +
+          '<th scope="col">Total fee</th><th scope="col">First instalment</th>' +
+        "</tr></thead><tbody>" + tierRows + "</tbody></table>" +
       "</div>" +
-      '<p class="ax-small ax-mt-2">Fees, inclusions and exclusions are confirmed before enrolment. ' +
-      'See <a class="ax-link" href="admissions.html">admissions</a> for the full fee breakdown and the document list.</p>';
+      '<p class="ax-small ax-mt-2">The first instalment is part of the total fee, not a charge ' +
+        "on top of it. " + AX.esc(fee.emiOnRequestNote || "") + "</p>" +
+
+      '<h2 class="ax-h2 ax-h2--sm ax-mt-6" data-reveal>Programme details</h2>' +
+      '<div class="ax-table-wrap ax-mt-3" data-reveal>' +
+        '<table class="ax-table ax-table--spec"><tbody>' + specRows + "</tbody></table>" +
+      "</div>" +
+      '<p class="ax-small ax-mt-2">Fees, inclusions and exclusions are confirmed before ' +
+        'enrolment. See <a class="ax-link" href="admissions.html">admissions</a> for the full ' +
+        "fee breakdown and the document list.</p>";
   }
 
   /* ── Shared renderers ─────────────────────────────────────────────────── */
@@ -55,6 +86,14 @@
     }).join("");
     var extra = p.careerRoles.length - limit;
 
+    /* A division on the register whose curriculum has not been published yet.
+       Better to say so than to show an empty roles list. */
+    var rolesBlock = p.pending
+      ? '<p class="ax-pcard__label">Curriculum</p>' +
+        '<p class="ax-body ax-body--sm ax-mt-1">Being finalised — training areas and career-oriented roles are published once confirmed.</p>'
+      : '<p class="ax-pcard__label">Career-oriented roles this programme trains for</p>' +
+        '<ul class="ax-pcard__roles">' + roles + "</ul>";
+
     return '<article class="ax-panel ax-spot ax-pcard" data-reveal>' +
       '<div class="ax-pcard__top">' +
         '<span class="ax-code">' + AX.esc(p.code) + "</span>" +
@@ -62,11 +101,10 @@
       "</div>" +
       '<h3 class="ax-h3 ax-pcard__division">' + AX.esc(p.division) + "</h3>" +
       '<p class="ax-pcard__cert">' + AX.esc(p.programme) + "</p>" +
-      '<p class="ax-pcard__label">Career-oriented roles this programme trains for</p>' +
-      '<ul class="ax-pcard__roles">' + roles + "</ul>" +
+      rolesBlock +
       '<div class="ax-pcard__foot">' +
         '<a class="ax-link" href="programme.html?code=' + AX.esc(p.code) + '">View programme ' + AX.icon.arrow + "</a>" +
-        (extra > 0 ? '<span class="ax-pcard__more">+' + extra + " more</span>" : "") +
+        (!p.pending && extra > 0 ? '<span class="ax-pcard__more">+' + extra + " more</span>" : "") +
       "</div></article>";
   }
 
@@ -76,7 +114,9 @@
       '<td data-th="Code"><span class="ax-code">' + AX.esc(p.code) + "</span></td>" +
       '<td data-th="Division"><a href="programme.html?code=' + AX.esc(p.code) + '">' + AX.esc(p.division) + "</a></td>" +
       '<td data-th="Programme">' + AX.esc(p.programme) + "</td>" +
-      '<td data-th="Career-oriented roles">' + AX.esc(p.careerRoles.join(" · ")) + "</td>" +
+      '<td data-th="Career-oriented roles">' +
+        (p.pending ? '<span class="ax-small">Curriculum being finalised</span>'
+                   : AX.esc(p.careerRoles.join(" · "))) + "</td>" +
       "</tr>";
   }
 
@@ -380,6 +420,20 @@
         "</div></section>"
       : "";
 
+    var bodyBlocks = p.pending
+      ? '<p class="ax-notice" data-reveal>' + AX.icon.info + "<span>" +
+          AX.esc((AX.academy || {}).pendingCurriculum || "") + "</span></p>"
+      : '<p class="ax-lead" data-reveal>' + AX.esc(p.intro) + "</p>" +
+
+        '<h2 class="ax-h2 ax-h2--sm ax-mt-6" data-reveal>Training areas</h2>' +
+        '<ul class="ax-areas ax-mt-3" data-reveal>' + areas + "</ul>" +
+
+        '<h2 class="ax-h2 ax-h2--sm ax-mt-6" data-reveal>' +
+          "Career-oriented roles this programme trains for</h2>" +
+        '<p class="ax-body ax-mt-2" data-reveal>' + AX.esc((AX.academy || {}).careerStatement || "") + "</p>" +
+        '<div class="ax-cluster ax-mt-3" data-reveal>' + roles + "</div>" +
+        '<div class="ax-mt-3" data-reveal>' + AX.noticeRoles() + "</div>";
+
     root.innerHTML =
       '<section class="ax-phero"><div class="ax-container">' +
         '<nav class="ax-crumbs" aria-label="Breadcrumb">' +
@@ -401,16 +455,7 @@
       '<section class="ax-section ax-section--top-tight"><div class="ax-container">' +
         '<div class="ax-detail-layout">' +
           "<div>" +
-            '<p class="ax-lead" data-reveal>' + AX.esc(p.intro) + "</p>" +
-
-            '<h2 class="ax-h2 ax-h2--sm ax-mt-6" data-reveal>Training areas</h2>' +
-            '<ul class="ax-areas ax-mt-3" data-reveal>' + areas + "</ul>" +
-
-            '<h2 class="ax-h2 ax-h2--sm ax-mt-6" data-reveal>' +
-              "Career-oriented roles this programme trains for</h2>" +
-            '<p class="ax-body ax-mt-2" data-reveal>' + AX.esc((AX.academy || {}).careerStatement || "") + "</p>" +
-            '<div class="ax-cluster ax-mt-3" data-reveal>' + roles + "</div>" +
-            '<div class="ax-mt-3" data-reveal>' + AX.noticeRoles() + "</div>" +
+            bodyBlocks +
 
             '<h2 class="ax-h2 ax-h2--sm ax-mt-6" data-reveal>Common programme features</h2>' +
             '<p class="ax-body ax-mt-2">Depending on the programme, students may receive:</p>' +
@@ -608,8 +653,30 @@
         var value = (input.value || "").trim();
         var msg = "";
 
+        /* A required checkbox is about checkedness, not about its value —
+           an unchecked box still reports value "on". */
+        if (input.type === "checkbox") {
+          msg = (input.required && !input.checked)
+            ? "Please tick this box to continue." : "";
+          field.classList.toggle("is-invalid", !!msg);
+          input.setAttribute("aria-invalid", msg ? "true" : "false");
+          if (err) {
+            err.textContent = msg;
+            if (msg && err.id) input.setAttribute("aria-describedby", err.id);
+            else input.removeAttribute("aria-describedby");
+          }
+          return !msg;
+        }
+
+        var matchId = input.getAttribute("data-ax-match");
+        var pattern = input.getAttribute("pattern");
+
         if (input.required && !value) {
           msg = "This field is required.";
+        } else if (matchId && value && value !== (document.getElementById(matchId) || {}).value) {
+          msg = "This does not match the password above.";
+        } else if (value && pattern && !new RegExp("^(?:" + pattern + ")$").test(value)) {
+          msg = input.getAttribute("data-ax-pattern-msg") || "Please check the format.";
         } else if (value && input.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
           msg = "Enter a valid email address, for example name@example.com.";
         } else if (value && input.type === "tel" && !/^[+\d][\d\s()-]{7,17}$/.test(value)) {
@@ -633,16 +700,30 @@
         return i.type !== "submit" && i.type !== "radio";
       });
 
+      /* Only validate a field the user has actually touched, or once the form
+         has been submitted. Validating an untouched field on blur is noisy,
+         and worse: the error message appears between mousedown and mouseup on
+         the submit button, pushing the button away so the click never lands. */
+      var submitted = false;
+
       inputs.forEach(function (input) {
-        input.addEventListener("blur", function () { validate(input); });
         input.addEventListener("input", function () {
+          input._axTouched = true;
           var f = fieldOf(input);
           if (f && f.classList.contains("is-invalid")) validate(input);
+        });
+        input.addEventListener("change", function () {
+          input._axTouched = true;
+          if (input.type === "checkbox" || input.tagName === "SELECT") validate(input);
+        });
+        input.addEventListener("blur", function () {
+          if (input._axTouched || submitted) validate(input);
         });
       });
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
+        submitted = true;
         var ok = true;
         var firstBad = null;
         inputs.forEach(function (input) {
@@ -698,49 +779,74 @@
       }).join("");
     }
 
-    /* Fees. The headline figures are derived from the 21 programme entries so
-       they can never drift from what the programme pages actually show. */
+    /* Fees. Every figure is derived from the 21 programme entries so the
+       headline numbers can never drift from the programme pages. */
     function money(v) { return parseInt(String(v).replace(/[^0-9]/g, ""), 10) || 0; }
-    function range(key) {
-      var vals = AX.programmes.map(function (pr) { return (pr.fee || {})[key]; }).filter(Boolean);
+    var allFees = [];
+    AX.programmes.forEach(function (pr) {
+      (pr.fees || []).forEach(function (f) { if (f.total) allFees.push(f.total); });
+    });
+    function span(vals) {
       if (!vals.length) return "";
       var sorted = vals.slice().sort(function (x, y) { return money(x) - money(y); });
       var lo = sorted[0], hi = sorted[sorted.length - 1];
       return lo === hi ? AX.esc(lo) : AX.esc(lo) + " – " + AX.esc(hi);
     }
-    put("[data-ax-fee-total]", range("total"));
-    put("[data-ax-fee-reg]", range("first"));
+    put("[data-ax-fee-total]", span(allFees));
+    var firsts = [];
+    AX.programmes.forEach(function (pr) {
+      (pr.fees || []).forEach(function (f) { if (f.first) firsts.push(f.first); });
+    });
+    put("[data-ax-fee-reg]", span(firsts));
     put("[data-ax-fee-emi]", AX.esc(fee.instalment || ""));
     put("[data-ax-fee-structure]", AX.esc(fee.structureNote || ""));
 
-    /* A per-programme fee table, so the range above is never the whole story. */
-    var ft = $("[data-ax-fee-table]");
-    if (ft) {
-      ft.innerHTML = '<table class="ax-table"><caption class="ax-sr">Programme fees</caption>' +
-        '<thead><tr><th scope="col">Code</th><th scope="col">Programme</th>' +
-        '<th scope="col">Total fee</th><th scope="col">First instalment</th></tr></thead><tbody>' +
-        AX.programmes.map(function (pr) {
-          var f = pr.fee || {};
-          return '<tr><td data-th="Code"><span class="ax-code">' + AX.esc(pr.code) + "</span></td>" +
-            '<td data-th="Programme"><a href="programme.html?code=' + AX.esc(pr.code) + '">' +
-              AX.esc(pr.division) + "</a></td>" +
-            '<td data-th="Total fee"><b class="ax-gold">' + AX.esc(f.total || "") + "</b>" +
-              (f.confirmed ? "" : " *") + "</td>" +
-            '<td data-th="First instalment">' + AX.esc(f.first || "") + "</td></tr>";
+    /* What each length is called and what it awards. */
+    var dt = $("[data-ax-durations]");
+    if (dt && a.durations) {
+      dt.innerHTML = '<table class="ax-table"><thead><tr>' +
+        '<th scope="col">Length</th><th scope="col">Training hours</th>' +
+        '<th scope="col">Course category</th>' +
+        '<th scope="col">Award on completion</th></tr></thead><tbody>' +
+        a.durations.map(function (d) {
+          return '<tr><td data-th="Length"><b class="ax-gold">' + AX.esc(d.label) + "</b></td>" +
+            '<td data-th="Training hours">' + AX.esc(d.hours || "") + "</td>" +
+            '<td data-th="Category">' + AX.esc(d.category) + "</td>" +
+            '<td data-th="Award">' + AX.esc(d.award) + "</td></tr>";
         }).join("") + "</tbody></table>";
     }
-    list("[data-ax-fee-includes]", fee.includes);
-    list("[data-ax-fee-excludes]", fee.excludes);
-    put("[data-ax-fee-note]", AX.esc(fee.note || ""));
+
+    /* The full fee matrix: 21 programmes x 3 lengths. */
+    var ft = $("[data-ax-fee-table]");
+    if (ft && a.durations) {
+      var head = a.durations.map(function (d) {
+        return '<th scope="col">' + AX.esc(d.label) + "</th>";
+      }).join("");
+      ft.innerHTML = '<table class="ax-table"><caption class="ax-sr">Programme fees by length</caption>' +
+        '<thead><tr><th scope="col">Code</th><th scope="col">Division</th>' + head +
+        "</tr></thead><tbody>" +
+        AX.programmes.map(function (pr) {
+          var cells = a.durations.map(function (d) {
+            var f = (pr.fees || []).filter(function (x) { return x.months === d.months; })[0] || {};
+            return '<td data-th="' + AX.esc(d.label) + '">' + AX.esc(f.total || "—") + "</td>";
+          }).join("");
+          return '<tr><td data-th="Code"><span class="ax-code">' + AX.esc(pr.code) + "</span></td>" +
+            '<td data-th="Division"><a href="programme.html?code=' + AX.esc(pr.code) + '">' +
+              AX.esc(pr.division) + "</a></td>" + cells + "</tr>";
+        }).join("") + "</tbody></table>";
+    }
 
     /* Eligibility + age */
     var elig = $("[data-ax-eligibility]");
     if (elig && a.eligibilityOptions) {
+      elig.setAttribute("data-note", a.eligibility || "");
       elig.innerHTML = '<table class="ax-table ax-table--spec"><tbody>' +
         a.eligibilityOptions.map(function (r) {
           return '<tr><th scope="row">' + AX.esc(r[0]) + "</th><td>" + AX.esc(r[1]) + "</td></tr>";
         }).join("") + "</tbody></table>";
     }
+    put("[data-ax-eligibility-note]", AX.esc(a.eligibilityNote || ""));
+    put("[data-ax-batch-open]", AX.esc(a.batch ? a.batch.open : ""));
     put("[data-ax-age]", "<strong class=\"ax-gold\">Age requirement.</strong> " + AX.esc(a.ageRequirement || ""));
 
     /* Documents */
@@ -751,6 +857,7 @@
     put("[data-ax-batch-types]", AX.esc(batch.types || ""));
     put("[data-ax-batch-rolling]", AX.esc(batch.rolling || ""));
     list("[data-ax-modes]", a.learningModes);
+    put("[data-ax-mode-note]", AX.esc(a.learningModeNote || ""));
 
     /* About */
     put("[data-ax-about-intro]", AX.esc(a.about ? a.about.intro : ""));
@@ -776,6 +883,22 @@
       ? AX.esc(a.hours.weekdays) + "<br>" + AX.esc(a.hours.sunday) : "");
     put("[data-ax-desk]", AX.esc(a.admissionsDesk || ""));
 
+    /* Map. Built from AX_ACADEMY.mapQuery; output=embed needs no API key. */
+    var map = $("[data-ax-map]");
+    if (map && a.mapQuery) {
+      var q = encodeURIComponent(a.mapQuery);
+      map.innerHTML =
+        '<div class="ax-map ax-map--live">' +
+          '<iframe src="https://www.google.com/maps?q=' + q + '&output=embed" ' +
+            'title="Map showing the location of Apex Professional Academy, Puncha, Purulia" ' +
+            'loading="lazy" referrerpolicy="no-referrer-when-downgrade" ' +
+            'allowfullscreen></iframe>' +
+        "</div>" +
+        '<a class="ax-link ax-mt-3" target="_blank" rel="noopener noreferrer" ' +
+          'href="https://www.google.com/maps/search/?api=1&query=' + q + '">' +
+          "Open in Google Maps " + AX.icon.arrow + "</a>";
+    }
+
     /* Legal */
     list("[data-ax-fee-policy]", legal.feePolicy, "p");
     put("[data-ax-refund-intro]", AX.esc(legal.refundIntro || ""));
@@ -795,20 +918,324 @@
     list("[data-ax-disclaimer]", legal.disclaimer, "p");
   }
 
+  /* ── Portal, application and payment ─────────────────────────────────
+     None of these submit anywhere yet. They validate, calculate and show
+     state so the flow can be reviewed and wired to a backend later. */
+
+  function money(v) { return parseInt(String(v).replace(/[^0-9]/g, ""), 10) || 0; }
+  function rupees(n) { return "₹" + n.toLocaleString("en-IN"); }
+
+  function feeOf(prog, months) {
+    var list = (prog && prog.fees) || [];
+    for (var i = 0; i < list.length; i++) if (list[i].months === months) return list[i];
+    return null;
+  }
+
+  /* Reveal control on password fields. */
+  function initPasswordToggles() {
+    var AX = window.AX;
+    AX.$$("[data-ax-pw-toggle]").forEach(function (btn) {
+      var input = document.getElementById(btn.getAttribute("aria-controls"));
+      if (!input) return;
+      btn.addEventListener("click", function () {
+        var shown = input.type === "text";
+        input.type = shown ? "password" : "text";
+        btn.textContent = shown ? "Show" : "Hide";
+        btn.setAttribute("aria-pressed", String(!shown));
+        input.focus();
+      });
+    });
+  }
+
+  /* "Forgot password" has nowhere to go until auth exists — say so plainly
+     rather than leaving a dead link. */
+  function initAuth() {
+    var AX = window.AX;
+    initPasswordToggles();
+    var forgot = AX.$("[data-ax-forgot]");
+    if (forgot) {
+      forgot.addEventListener("click", function (e) {
+        e.preventDefault();
+        AX.toast("Password reset needs the authentication service to be connected.");
+      });
+    }
+  }
+
+  /* Fills a length <select> from AX_ACADEMY.durations. */
+  function fillLengthSelect(sel, months) {
+    var AX = window.AX, ds = (AX.academy || {}).durations || [];
+    sel.innerHTML = ds.map(function (d) {
+      return '<option value="' + d.months + '"' +
+        (d.months === months ? " selected" : "") + ">" +
+        AX.esc(d.label + " — " + d.category) + "</option>";
+    }).join("");
+  }
+
+  /* ── Admission form ─────────────────────────────────────────────────── */
+  function initApply() {
+    var AX = window.AX, $ = AX.$, $$ = AX.$$;
+    var progSel = $("#a-prog");
+    var lenWrap = $("[data-ax-lengths]");
+    if (!progSel || !lenWrap) return;
+
+    var ds = (AX.academy || {}).durations || [];
+    var chosenMonths = 3;
+
+    /* Document checklist, from the same list the admissions page shows. */
+    var ul = $("[data-ax-upload-list]");
+    if (ul) {
+      ul.innerHTML = ((AX.academy || {}).documents || []).map(function (d) {
+        return '<li><span class="ax-uploads__name">' + AX.esc(d) + "</span>" +
+          '<span class="ax-small">to bring</span></li>';
+      }).join("");
+    }
+
+    function renderLengths() {
+      var prog = AX.byCode(progSel.value);
+      lenWrap.innerHTML = ds.map(function (d) {
+        var f = prog ? feeOf(prog, d.months) : null;
+        return '<label><input type="radio" name="months" value="' + d.months + '"' +
+            (d.months === chosenMonths ? " checked" : "") + ">" +
+          '<span class="ax-payopt__body">' +
+            '<span class="ax-payopt__title">' + AX.esc(d.label) +
+              '<span class="ax-payopt__amount">' +
+                (f ? AX.esc(f.total) : "—") + "</span></span>" +
+            '<span class="ax-payopt__note">' + AX.esc(d.category + " · " + d.award) +
+            "</span>" +
+          "</span></label>";
+      }).join("");
+      $$('input[name="months"]', lenWrap).forEach(function (r) {
+        r.addEventListener("change", function () {
+          chosenMonths = parseInt(r.value, 10);
+          renderSummary();
+        });
+      });
+    }
+
+    function renderSummary() {
+      var prog = AX.byCode(progSel.value);
+      var d = ds.filter(function (x) { return x.months === chosenMonths; })[0];
+      var title = $("[data-ax-sum-title]"), sub = $("[data-ax-sum-sub]");
+      var rows = $("[data-ax-sum-rows]"), link = $("[data-ax-sum-link]");
+
+      if (!prog) {
+        if (title) title.textContent = "No programme selected";
+        if (sub) sub.textContent = "Choose a programme and length to see the fee.";
+        if (rows) rows.innerHTML = "";
+        if (link) { link.textContent = "Compare all programmes"; link.href = "programmes.html"; }
+        return;
+      }
+
+      var f = feeOf(prog, chosenMonths) || {};
+      if (title) title.textContent = prog.division;
+      if (sub) sub.textContent = prog.programme;
+      if (link) {
+        link.textContent = "View programme details";
+        link.href = "programme.html?code=" + encodeURIComponent(prog.code);
+      }
+      if (!rows) return;
+
+      var balance = f.first ? rupees(money(f.total) - money(f.first)) : null;
+      rows.innerHTML =
+        '<div class="ax-summary__row"><span>Programme code</span><span>' + AX.esc(prog.code) + "</span></div>" +
+        '<div class="ax-summary__row"><span>Length</span><span>' + AX.esc(d ? d.label : "") + "</span></div>" +
+        '<div class="ax-summary__row"><span>Award</span><span>' + AX.esc(d ? d.award : "") + "</span></div>" +
+        '<div class="ax-summary__row"><span>First instalment</span><span>' +
+          (f.first ? AX.esc(f.first)
+                   : AX.esc(((AX.academy || {}).fee || {}).emiOnRequest || "EMI on request")) +
+        "</span></div>" +
+        (balance
+          ? '<div class="ax-summary__row"><span>Balance</span><span>' + balance + "</span></div>"
+          : "") +
+        '<div class="ax-summary__row ax-summary__row--total"><span>Total fee</span><span>' +
+          AX.esc(f.total || "—") + "</span></div>";
+    }
+
+    progSel.addEventListener("change", function () { renderLengths(); renderSummary(); });
+    renderLengths();
+    renderSummary();
+    initPasswordToggles();
+
+    /* A ?code= link from a programme page preselects it. */
+    var wanted = new URLSearchParams(location.search).get("code");
+    if (wanted && AX.byCode(wanted)) {
+      progSel.value = AX.byCode(wanted).code;
+      renderLengths();
+      renderSummary();
+    }
+  }
+
+  /* ── Payment ────────────────────────────────────────────────────────── */
+  function initPayment() {
+    var AX = window.AX, $ = AX.$, $$ = AX.$$;
+    var progSel = $("#p-prog"), lenSel = $("[data-ax-length-select]");
+    var opts = $("[data-ax-payopts]");
+    if (!progSel || !lenSel || !opts) return;
+
+    var params = new URLSearchParams(location.search);
+    var months = parseInt(params.get("months"), 10) || 3;
+    fillLengthSelect(lenSel, months);
+
+    var code = params.get("code");
+    if (code && AX.byCode(code)) progSel.value = AX.byCode(code).code;
+
+    function current() {
+      var prog = AX.byCode(progSel.value);
+      var m = parseInt(lenSel.value, 10) || 3;
+      return { prog: prog, months: m, fee: prog ? feeOf(prog, m) : null };
+    }
+
+    function renderOptions() {
+      var c = current();
+      if (!c.prog || !c.fee) {
+        opts.innerHTML = '<p class="ax-body ax-body--sm">Select a programme to see the amounts.</p>';
+        return;
+      }
+      var total = money(c.fee.total);
+      var first = c.fee.first ? money(c.fee.first) : null;
+      var choices = [];
+      if (first) {
+        choices.push(["first", "Pay the first instalment", rupees(first),
+          "Secures your place. The balance of " + rupees(total - first) +
+          " is payable on the schedule agreed at enrolment."]);
+      }
+      choices.push(["full", "Pay the full fee", rupees(total),
+        "Settles the programme fee in one payment."]);
+
+      opts.innerHTML = choices.map(function (c2, i) {
+        return '<label><input type="radio" name="payAmount" value="' + c2[0] + '"' +
+            (i === 0 ? " checked" : "") + ">" +
+          '<span class="ax-payopt__body"><span class="ax-payopt__title">' + AX.esc(c2[1]) +
+            '<span class="ax-payopt__amount">' + AX.esc(c2[2]) + "</span></span>" +
+            '<span class="ax-payopt__note">' + AX.esc(c2[3]) + "</span></span></label>";
+      }).join("");
+      $$('input[name="payAmount"]', opts).forEach(function (r) {
+        r.addEventListener("change", renderSummary);
+      });
+      if (!first) {
+        var note = ((AX.academy || {}).fee || {}).emiOnRequestNote || "";
+        opts.insertAdjacentHTML("beforeend",
+          '<p class="ax-small">' + AX.esc(note) +
+          " Only the full fee can be paid online here.</p>");
+      }
+    }
+
+    function renderSummary() {
+      var c = current();
+      var title = $("[data-ax-pay-title]"), box = $("[data-ax-pay-summary]");
+      var btn = $("[data-ax-pay-btn]");
+      if (!box) return;
+
+      if (!c.prog || !c.fee) {
+        if (title) title.textContent = "No programme selected";
+        box.innerHTML = '<p class="ax-body ax-body--sm">Choose a programme and length.</p>';
+        if (btn) btn.setAttribute("aria-disabled", "true");
+        return;
+      }
+      if (btn) btn.removeAttribute("aria-disabled");
+
+      var picked = $('input[name="payAmount"]:checked');
+      var payFull = !picked || picked.value === "full";
+      var total = money(c.fee.total);
+      var first = c.fee.first ? money(c.fee.first) : null;
+      var amount = (!payFull && first) ? first : total;
+      var d = ((AX.academy || {}).durations || [])
+        .filter(function (x) { return x.months === c.months; })[0];
+
+      if (title) title.textContent = c.prog.division;
+      box.innerHTML =
+        '<div class="ax-summary__row"><span>Programme</span><span>' + AX.esc(c.prog.code) + "</span></div>" +
+        '<div class="ax-summary__row"><span>Length</span><span>' + AX.esc(d ? d.label : "") + "</span></div>" +
+        '<div class="ax-summary__row"><span>Total programme fee</span><span>' + AX.esc(c.fee.total) + "</span></div>" +
+        (!payFull && first
+          ? '<div class="ax-summary__row"><span>Balance after this payment</span><span>' +
+            rupees(total - first) + "</span></div>"
+          : "") +
+        '<div class="ax-summary__row ax-summary__row--total"><span>Paying now</span><span>' +
+          rupees(amount) + "</span></div>";
+    }
+
+    progSel.addEventListener("change", function () { renderOptions(); renderSummary(); });
+    lenSel.addEventListener("change", function () { renderOptions(); renderSummary(); });
+    renderOptions();
+    renderSummary();
+  }
+
+  /* ── Payment outcome ────────────────────────────────────────────────── */
+  function initPaymentStatus() {
+    var AX = window.AX;
+    var root = AX.$("[data-ax-status]");
+    if (!root) return;
+
+    var params = new URLSearchParams(location.search);
+    var status = (params.get("status") || "pending").toLowerCase();
+    var ref = params.get("ref") || "";
+
+    var STATES = {
+      success: ["ok",
+        '<path d="M6 15.5l6 6 13-13" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+        "Payment received",
+        "Thank you. Your payment has been recorded and a receipt will be sent to the email address on your application.",
+        "What happens next: the Admissions Desk confirms your enrolment and shares your batch details."],
+      failed: ["bad",
+        '<path d="M9 9l14 14M23 9L9 23" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>',
+        "Payment not completed",
+        "The payment did not go through and you have not been charged. This is usually a bank timeout or a cancelled transaction.",
+        "You can try again, or pay at the Admissions Desk during office hours."],
+      pending: ["",
+        '<circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="3" fill="none"/><path d="M16 9v7.5l5 3" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>',
+        "Payment pending",
+        "Your bank has not confirmed this payment yet. It can take a few minutes. Please do not pay again until this clears.",
+        "If the amount has left your account but this page still says pending after 30 minutes, contact the Admissions Desk with your reference number."]
+    };
+    var st = STATES[status] || STATES.pending;
+
+    root.innerHTML = '<div class="ax-container ax-container--narrow">' +
+      '<div class="ax-outcome">' +
+        '<div class="ax-outcome__mark' + (st[0] ? " ax-outcome__mark--" + st[0] : "") + '">' +
+          '<svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">' + st[1] + "</svg>" +
+        "</div>" +
+        '<h1 class="ax-h2 ax-h2--sm">' + AX.esc(st[2]) + "</h1>" +
+        '<p class="ax-lead ax-mt-3">' + AX.esc(st[3]) + "</p>" +
+        '<p class="ax-body ax-mt-3">' + AX.esc(st[4]) + "</p>" +
+        (ref
+          ? '<div class="ax-panel ax-panel--pad ax-mt-4"><div class="ax-summary__row">' +
+            "<span>Reference</span><span>" + AX.esc(ref) + "</span></div></div>"
+          : "") +
+        '<div class="ax-cluster ax-mt-5">' +
+          (status === "failed"
+            ? '<a class="ax-btn ax-btn--gold ax-btn--lg" href="payment.html">Try again</a>'
+            : '<a class="ax-btn ax-btn--gold ax-btn--lg" href="index.html">Back to home</a>') +
+          '<a class="ax-btn ax-btn--glass ax-btn--lg" href="contact.html">Contact admissions</a>' +
+        "</div>" +
+        '<p class="ax-small ax-mt-5">This page reads the outcome from the link the payment ' +
+          "gateway returns. Until a gateway is connected it shows the pending state by default.</p>" +
+      "</div></div>";
+
+    document.title = st[2] + " | Apex Professional Academy";
+  }
+
   /* ── Dispatch ─────────────────────────────────────────────────────────── */
   var PAGES = {
     home: initHome,
     programmes: initProgrammes,
     programme: initDetail,
     careers: initCareers,
-    gallery: initGallery
+    gallery: initGallery,
+    auth: initAuth,
+    apply: initApply,
+    payment: initPayment,
+    "payment-status": initPaymentStatus
   };
 
   window.AX_PAGE = ready(function () {
-    var key = document.body.getAttribute("data-page");
-    if (PAGES[key]) PAGES[key]();
-    // These can appear on any page.
+    /* These run first because they populate shared controls — notably the
+       programme <select>, which the apply and payment modules then read and
+       preselect from a ?code= link. */
     initAcademy();
     initForms();
+
+    var key = document.body.getAttribute("data-page");
+    if (PAGES[key]) PAGES[key]();
   });
 })();

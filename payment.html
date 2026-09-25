@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fee payment | Apex Professional Academy</title>
+<meta name="description" content="Review your programme fee and pay your first instalment or full fee to Apex Professional Academy.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#04070E">
+
+<link rel="icon" href="assets/brand/apexlogo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/apex.css">
+<script>document.documentElement.classList.add("ax-ready");</script>
+</head>
+
+<body data-page="payment">
+<a class="ax-skip" href="#main">Skip to content</a>
+
+<div class="ax-atmos" aria-hidden="true">
+  <span class="ax-atmos__orb ax-atmos__orb--1"></span>
+  <span class="ax-atmos__orb ax-atmos__orb--2"></span>
+</div>
+
+<div data-ax-header></div>
+
+<main id="main">
+
+  <section class="ax-phero">
+    <div class="ax-container">
+      <nav class="ax-crumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="admissions.html">Admissions</a><span aria-hidden="true">/</span>
+        <span>Fee payment</span>
+      </nav>
+      <div class="ax-phero__inner">
+        <p class="ax-eyebrow">Fee payment</p>
+        <h1 class="ax-h1 ax-h1--page ax-mt-2">Confirm and <em class="ax-serif">pay</em>.</h1>
+        <p class="ax-lead ax-mt-3">
+          Check the programme, the length and the amount before you continue. Payment is
+          handled by the payment gateway, not on this page.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ax-section ax-section--top-tight">
+    <div class="ax-container ax-container--wide">
+      <div class="ax-detail-layout">
+
+        <div>
+          <div class="ax-panel ax-panel--pad">
+            <p class="ax-eyebrow">Step 1</p>
+            <h2 class="ax-h3 ax-mt-2">What you are paying for</h2>
+
+            <div class="ax-grid ax-grid--2 ax-gap-md ax-mt-3">
+              <div class="ax-field">
+                <label class="ax-label" for="p-prog">Programme</label>
+                <select class="ax-select" id="p-prog" name="programme" data-ax-programme-select>
+                  <option value="">Select a programme</option>
+                </select>
+              </div>
+              <div class="ax-field">
+                <label class="ax-label" for="p-len">Programme length</label>
+                <select class="ax-select" id="p-len" name="months" data-ax-length-select></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="ax-panel ax-panel--pad ax-mt-3">
+            <p class="ax-eyebrow">Step 2</p>
+            <h2 class="ax-h3 ax-mt-2">How much to pay now</h2>
+            <div class="ax-payopt ax-mt-3" role="radiogroup" aria-label="Amount to pay now"
+                 data-ax-payopts></div>
+          </div>
+
+          <div class="ax-panel ax-panel--pad ax-mt-3">
+            <p class="ax-eyebrow">Step 3</p>
+            <h2 class="ax-h3 ax-mt-2">Payer details</h2>
+
+            <form class="ax-stack ax-mt-3" data-ax-form data-ax-pay novalidate aria-label="Payment details">
+              <div class="ax-success" data-ax-success role="status">
+                <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7.4l3.4 3.4L12 3.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Details validated. Connecting a payment gateway is the remaining step.</span>
+              </div>
+
+              <div class="ax-grid ax-grid--2 ax-gap-md">
+                <div class="ax-field">
+                  <label class="ax-label" for="p-name">Student name <span class="ax-req">*</span></label>
+                  <input class="ax-input" id="p-name" name="name" type="text" required minlength="2" autocomplete="name">
+                  <p class="ax-error" id="pe-name"></p>
+                </div>
+                <div class="ax-field">
+                  <label class="ax-label" for="p-appid">Application number</label>
+                  <input class="ax-input" id="p-appid" name="applicationId" type="text"
+                         placeholder="If you have one">
+                  <p class="ax-error" id="pe-appid"></p>
+                </div>
+              </div>
+
+              <div class="ax-grid ax-grid--2 ax-gap-md">
+                <div class="ax-field">
+                  <label class="ax-label" for="p-email">Email <span class="ax-req">*</span></label>
+                  <input class="ax-input" id="p-email" name="email" type="email" required autocomplete="email">
+                  <p class="ax-error" id="pe-email"></p>
+                </div>
+                <div class="ax-field">
+                  <label class="ax-label" for="p-phone">Phone <span class="ax-req">*</span></label>
+                  <input class="ax-input" id="p-phone" name="phone" type="tel" required autocomplete="tel">
+                  <p class="ax-error" id="pe-phone"></p>
+                </div>
+              </div>
+
+              <div class="ax-field">
+                <label class="ax-radio">
+                  <input type="checkbox" name="payTerms" value="yes" required id="p-terms">
+                  <span>I understand that fees paid are strictly non-refundable</span>
+                </label>
+                <p class="ax-small">
+                  Read the <a class="ax-link" href="disclaimer.html#refund">refund policy</a> in
+                  full. Fees cannot be refunded, adjusted or transferred once paid.
+                </p>
+                <p class="ax-error" id="pe-terms"></p>
+              </div>
+
+              <p class="ax-notice">
+                <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.4" stroke="currentColor" stroke-width="1.3"/><path d="M9 8.1v4.3M9 5.7v.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span><strong>No card details are collected on this website.</strong> Continuing
+                hands you to the payment gateway, which takes the card, UPI or net-banking
+                details on its own secure page. Apex never sees or stores them.</span>
+              </p>
+
+              <button class="ax-btn ax-btn--gold ax-btn--lg ax-btn--block" type="submit"
+                      data-ax-pay-btn>Continue to secure payment</button>
+
+              <p class="ax-small ax-center">
+                Gateway not yet connected &mdash;
+                <span class="ax-ph">{{PLACEHOLDER: payment gateway and merchant key}}</span>.
+              </p>
+
+              <div class="ax-gateways" aria-label="Supported payment methods once connected">
+                <span class="ax-small">Will support:</span>
+                <span class="ax-gateway">UPI</span>
+                <span class="ax-gateway">Debit / credit card</span>
+                <span class="ax-gateway">Net banking</span>
+                <span class="ax-gateway">Wallet</span>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <aside class="ax-sticky">
+          <div class="ax-panel ax-panel--pad ax-spot">
+            <p class="ax-eyebrow">Summary</p>
+            <h2 class="ax-h3 ax-mt-2" data-ax-pay-title>No programme selected</h2>
+            <div class="ax-mt-3" data-ax-pay-summary></div>
+
+            <div class="ax-divider">
+              <p class="ax-small">
+                Paying in person instead? The Admissions Desk accepts payment at the campus
+                during office hours &mdash; see <a class="ax-link" href="contact.html">contact</a>.
+              </p>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-ax-footer></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="assets/data/programmes.js" defer></script>
+<script src="assets/js/pages.js" defer></script>
+<script src="assets/js/apex.js" defer></script>
+</body>
+</html>
